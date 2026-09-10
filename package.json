@@ -13,7 +13,6 @@
   "license": "MIT",
   "scripts": {
     "dev": "npx --yes serve . -l 3000",
-    "start": "npx --yes serve . -l 3000",
-    "build": "echo \"Site estatico: nenhum passo de build necessario.\""
+    "start": "npx --yes serve . -l 3000"
   }
 }
