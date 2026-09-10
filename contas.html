@@ -1,0 +1,301 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Fôlego · Contas</title>
+<meta name="description" content="Visão consolidada Open Finance e radar preventivo de vencimentos do Fôlego." />
+<meta name="theme-color" content="#f7f9fb" />
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='88'>🌿</text></svg>" />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet" />
+<script src="https://cdn.tailwindcss.com"></script>
+<script>
+  tailwind.config = {
+    theme: {
+      extend: {
+        colors: {
+          sereno: '#f7f9fb',
+          folego: { 50:'#eff6ff',100:'#dbeafe',200:'#bfdbfe',300:'#93c5fd',400:'#60a5fa',500:'#3b82f6',600:'#2563eb',700:'#1d4ed8',800:'#1e40af',900:'#1e3a8a' },
+          menta:  { 50:'#eefaf4',100:'#d5f1e5',300:'#7fd3b1',500:'#3fae86',700:'#27795c' },
+          areia:  { 50:'#fdf7ec',100:'#faedd6',300:'#eccb92',500:'#c9973f',700:'#946a22' }
+        },
+        fontFamily: { sans: ['"Plus Jakarta Sans"','ui-sans-serif','system-ui','sans-serif'] },
+        boxShadow: {
+          suave: '0 1px 2px rgba(15,23,42,.04), 0 14px 34px -22px rgba(15,23,42,.35)',
+          serena: '0 24px 50px -28px rgba(37,99,235,.55)'
+        }
+      }
+    }
+  }
+</script>
+<style type="text/tailwindcss">
+  @layer base {
+    body { @apply bg-sereno font-sans text-slate-600 antialiased; }
+    h1,h2,h3 { @apply text-slate-900; }
+  }
+  @layer components {
+    .card { @apply rounded-3xl border border-white bg-white/80 shadow-suave backdrop-blur; }
+    .nav-link { @apply rounded-full px-3.5 py-2 text-sm font-semibold text-slate-500 transition hover:bg-white hover:text-folego-700; }
+    .nav-on { @apply bg-white text-folego-700 shadow-suave; }
+    .tab { @apply flex flex-1 flex-col items-center gap-1 py-2.5 text-[11px] font-semibold text-slate-400 transition; }
+    .tab-on { @apply text-folego-600; }
+    .pill { @apply inline-flex items-center gap-1.5 rounded-full px-3 py-1 text-xs font-semibold; }
+    .btn { @apply inline-flex items-center justify-center gap-2 rounded-full px-5 py-3 text-sm font-bold transition; }
+    .btn-primary { @apply bg-folego-600 text-white shadow-serena hover:bg-folego-700; }
+    .btn-ghost { @apply border border-slate-200 bg-white text-slate-700 hover:border-folego-200 hover:text-folego-700; }
+    .marca { @apply grid h-12 w-12 shrink-0 place-items-center rounded-2xl text-sm font-extrabold; }
+  }
+</style>
+<style>
+  body.discreto .valor { filter: blur(8px); user-select: none; }
+</style>
+</head>
+<body class="min-h-screen pb-24 md:pb-0">
+
+<div aria-hidden="true" class="pointer-events-none fixed inset-0 -z-10 overflow-hidden">
+  <div class="absolute -left-24 -top-32 h-80 w-80 rounded-full bg-folego-100/70 blur-3xl"></div>
+  <div class="absolute right-0 top-1/2 h-96 w-96 rounded-full bg-menta-100/50 blur-3xl"></div>
+</div>
+
+<header class="sticky top-0 z-40 border-b border-white/70 bg-sereno/85 backdrop-blur">
+  <div class="mx-auto flex max-w-6xl items-center justify-between gap-4 px-5 py-3.5">
+    <a href="/" class="flex items-center gap-2.5">
+      <span class="grid h-9 w-9 place-items-center rounded-2xl bg-folego-600 text-white shadow-serena">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" class="h-5 w-5"><path d="M4 14c0-4 3-8 8-9 5 1 8 5 8 9a5 5 0 0 1-8 4 5 5 0 0 1-8-4Z" stroke-linejoin="round"/><path d="M12 5v13" stroke-linecap="round"/></svg>
+      </span>
+      <span class="text-[15px] font-extrabold tracking-tight text-slate-900">Fôlego</span>
+    </a>
+    <nav class="hidden items-center gap-1 md:flex">
+      <a href="/" class="nav-link">Painel</a>
+      <a href="/contas" class="nav-link nav-on">Contas</a>
+      <a href="/orcamento" class="nav-link">Orçamento</a>
+      <a href="/metas" class="nav-link">Metas</a>
+      <a href="/boas-vindas" class="nav-link">Boas-vindas</a>
+    </nav>
+    <div class="flex items-center gap-2">
+      <button id="btn-discreto" type="button" class="rounded-full border border-slate-200 bg-white px-3.5 py-2 text-xs font-bold text-slate-600 transition hover:border-folego-200 hover:text-folego-700">Modo discreto</button>
+      <a href="/login" class="grid h-9 w-9 place-items-center rounded-full bg-folego-100 text-sm font-extrabold text-folego-700" title="Sua conta">BM</a>
+    </div>
+  </div>
+</header>
+
+<main class="mx-auto max-w-6xl px-5 py-8">
+
+  <section class="mb-8 flex flex-wrap items-end justify-between gap-4">
+    <div>
+      <span class="pill bg-folego-50 text-folego-700">Open Finance</span>
+      <h1 class="mt-3 text-3xl font-extrabold tracking-tight sm:text-4xl">Todas as contas, uma respiração só.</h1>
+      <p class="mt-2 max-w-xl text-[15px] leading-relaxed">Quatro instituições conectadas com sua autorização. O Fôlego apenas lê os dados: nenhuma transferência sai daqui.</p>
+    </div>
+    <button id="btn-sincronizar" class="btn btn-ghost">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" class="h-4 w-4"><path d="M4 12a8 8 0 0 1 13.7-5.7L20 8" stroke-linecap="round" stroke-linejoin="round"/><path d="M20 4v4h-4" stroke-linecap="round" stroke-linejoin="round"/><path d="M20 12a8 8 0 0 1-13.7 5.7L4 16" stroke-linecap="round" stroke-linejoin="round"/><path d="M4 20v-4h4" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      <span id="txt-sincronizar">Sincronizado há 12 min</span>
+    </button>
+  </section>
+
+  <section class="grid gap-5 sm:grid-cols-3">
+    <div class="card p-6">
+      <p class="text-sm font-bold text-slate-500">Saldo disponível hoje</p>
+      <p class="valor mt-3 text-3xl font-extrabold tracking-tight text-slate-900">R$ 18.430<span class="text-xl text-slate-400">,00</span></p>
+      <p class="mt-1 text-sm">Contas correntes e poupança somadas</p>
+    </div>
+    <div class="card p-6">
+      <p class="text-sm font-bold text-slate-500">Compromissos até 30/09</p>
+      <p class="valor mt-3 text-3xl font-extrabold tracking-tight text-slate-900">R$ 6.842<span class="text-xl text-slate-400">,00</span></p>
+      <p class="mt-1 text-sm">11 vencimentos, 9 já reservados</p>
+    </div>
+    <div class="card p-6">
+      <p class="text-sm font-bold text-slate-500">Sobra projetada</p>
+      <p class="valor mt-3 text-3xl font-extrabold tracking-tight text-menta-700">R$ 3.150<span class="text-xl text-menta-500">,00</span></p>
+      <p class="mt-1 text-sm">Equivale a mais 8 dias de fôlego</p>
+    </div>
+  </section>
+
+  <section class="mt-10">
+    <div class="flex flex-wrap items-end justify-between gap-3">
+      <div>
+        <h2 class="text-xl font-extrabold tracking-tight">Instituições conectadas</h2>
+        <p class="mt-1.5 text-sm">Você autoriza cada conexão e pode revogar quando quiser.</p>
+      </div>
+      <button class="btn btn-ghost">+ Conectar instituição</button>
+    </div>
+
+    <div class="mt-5 grid gap-4 md:grid-cols-2">
+      <article class="card flex items-center gap-4 p-5">
+        <span class="marca bg-folego-50 text-folego-700">BB</span>
+        <div class="min-w-0 flex-1">
+          <p class="truncate font-bold text-slate-900">Conta corrente conjunta</p>
+          <p class="text-sm">Bruno &amp; Marina · sincronizada há 12 min</p>
+        </div>
+        <div class="shrink-0 text-right">
+          <p class="valor font-extrabold text-slate-900">R$ 9.240</p>
+          <span class="pill bg-menta-100 text-menta-700">Ativa</span>
+        </div>
+      </article>
+
+      <article class="card flex items-center gap-4 p-5">
+        <span class="marca bg-menta-50 text-menta-700">CP</span>
+        <div class="min-w-0 flex-1">
+          <p class="truncate font-bold text-slate-900">Poupança da reserva</p>
+          <p class="text-sm">Resgate imediato · sincronizada há 12 min</p>
+        </div>
+        <div class="shrink-0 text-right">
+          <p class="valor font-extrabold text-slate-900">R$ 8.190</p>
+          <span class="pill bg-menta-100 text-menta-700">Ativa</span>
+        </div>
+      </article>
+
+      <article class="card flex items-center gap-4 p-5">
+        <span class="marca bg-slate-100 text-slate-700">NU</span>
+        <div class="min-w-0 flex-1">
+          <p class="truncate font-bold text-slate-900">Cartão de crédito</p>
+          <p class="text-sm">Fatura fecha em 11/09 · vence em 18/09</p>
+        </div>
+        <div class="shrink-0 text-right">
+          <p class="valor font-extrabold text-slate-900">- R$ 1.980</p>
+          <span class="pill bg-areia-100 text-areia-700">Fatura aberta</span>
+        </div>
+      </article>
+
+      <article class="card flex items-center gap-4 p-5">
+        <span class="marca bg-areia-50 text-areia-700">IN</span>
+        <div class="min-w-0 flex-1">
+          <p class="truncate font-bold text-slate-900">Investimentos</p>
+          <p class="text-sm">Consentimento vence em 14 dias</p>
+        </div>
+        <div class="shrink-0 text-right">
+          <p class="valor font-extrabold text-slate-900">R$ 3.000</p>
+          <span class="pill bg-areia-100 text-areia-700">Renovar</span>
+        </div>
+      </article>
+    </div>
+  </section>
+
+  <section class="mt-12">
+    <div class="flex flex-wrap items-end justify-between gap-3">
+      <div>
+        <span class="pill bg-areia-100 text-areia-700">Radar preventivo</span>
+        <h2 class="mt-3 text-xl font-extrabold tracking-tight">Nada aqui vira surpresa.</h2>
+        <p class="mt-1.5 text-sm">Cada vencimento aparece com dias de antecedência e com o dinheiro já apontado.</p>
+      </div>
+    </div>
+
+    <div class="mt-5 rounded-3xl border border-menta-200/70 bg-menta-50/70 p-5">
+      <p class="font-bold text-menta-700">Dia seguro sugerido: sexta, 12 de setembro</p>
+      <p class="mt-1 text-sm text-menta-700/80">O salário já entrou e nenhuma reserva de meta é tocada se você concentrar os pagamentos nesse dia.</p>
+    </div>
+
+    <div class="mt-6 space-y-6">
+      <div>
+        <p class="mb-3 text-xs font-bold uppercase tracking-wide text-slate-400">Esta semana</p>
+        <ul class="space-y-3">
+          <li class="card flex flex-wrap items-center gap-4 p-5">
+            <span class="grid h-12 w-12 shrink-0 place-items-center rounded-2xl bg-menta-50 text-center text-[11px] font-extrabold leading-tight text-menta-700">12<br />SET</span>
+            <span class="min-w-0 flex-1">
+              <span class="block font-bold text-slate-900">Aluguel</span>
+              <span class="block text-sm">Débito na conta conjunta · dinheiro já separado</span>
+            </span>
+            <span class="valor shrink-0 font-extrabold text-slate-900">R$ 1.450</span>
+            <span class="pill shrink-0 bg-menta-100 text-menta-700">Tranquilo</span>
+          </li>
+          <li class="card flex flex-wrap items-center gap-4 p-5">
+            <span class="grid h-12 w-12 shrink-0 place-items-center rounded-2xl bg-menta-50 text-center text-[11px] font-extrabold leading-tight text-menta-700">15<br />SET</span>
+            <span class="min-w-0 flex-1">
+              <span class="block font-bold text-slate-900">Energia elétrica</span>
+              <span class="block text-sm">Débito automático ativo</span>
+            </span>
+            <span class="valor shrink-0 font-extrabold text-slate-900">R$ 268</span>
+            <span class="pill shrink-0 bg-menta-100 text-menta-700">Tranquilo</span>
+          </li>
+        </ul>
+      </div>
+
+      <div>
+        <p class="mb-3 text-xs font-bold uppercase tracking-wide text-slate-400">Próximas duas semanas</p>
+        <ul class="space-y-3">
+          <li class="card flex flex-wrap items-center gap-4 border-areia-200/70 bg-areia-50/50 p-5">
+            <span class="grid h-12 w-12 shrink-0 place-items-center rounded-2xl bg-areia-100 text-center text-[11px] font-extrabold leading-tight text-areia-700">18<br />SET</span>
+            <span class="min-w-0 flex-1">
+              <span class="block font-bold text-slate-900">Fatura do cartão</span>
+              <span class="block text-sm">Faltam R$ 240 para cobrir tudo. Dá tempo com folga.</span>
+            </span>
+            <span class="valor shrink-0 font-extrabold text-slate-900">R$ 1.980</span>
+            <span class="pill shrink-0 bg-areia-100 text-areia-700">Atenção</span>
+          </li>
+          <li class="card flex flex-wrap items-center gap-4 p-5">
+            <span class="grid h-12 w-12 shrink-0 place-items-center rounded-2xl bg-menta-50 text-center text-[11px] font-extrabold leading-tight text-menta-700">20<br />SET</span>
+            <span class="min-w-0 flex-1">
+              <span class="block font-bold text-slate-900">Escola das crianças</span>
+              <span class="block text-sm">Boleto emitido · reservado no dia 05</span>
+            </span>
+            <span class="valor shrink-0 font-extrabold text-slate-900">R$ 1.320</span>
+            <span class="pill shrink-0 bg-menta-100 text-menta-700">Tranquilo</span>
+          </li>
+          <li class="card flex flex-wrap items-center gap-4 p-5">
+            <span class="grid h-12 w-12 shrink-0 place-items-center rounded-2xl bg-menta-50 text-center text-[11px] font-extrabold leading-tight text-menta-700">22<br />SET</span>
+            <span class="min-w-0 flex-1">
+              <span class="block font-bold text-slate-900">Internet e telefonia</span>
+              <span class="block text-sm">Renovação anual · dá para renegociar em 5 minutos</span>
+            </span>
+            <span class="valor shrink-0 font-extrabold text-slate-900">R$ 189</span>
+            <span class="pill shrink-0 bg-folego-50 text-folego-700">Revisar</span>
+          </li>
+        </ul>
+      </div>
+
+      <div>
+        <p class="mb-3 text-xs font-bold uppercase tracking-wide text-slate-400">Depois do dia 25</p>
+        <ul class="space-y-3">
+          <li class="card flex flex-wrap items-center gap-4 p-5">
+            <span class="grid h-12 w-12 shrink-0 place-items-center rounded-2xl bg-slate-100 text-center text-[11px] font-extrabold leading-tight text-slate-500">28<br />SET</span>
+            <span class="min-w-0 flex-1">
+              <span class="block font-bold text-slate-900">IPVA · 4ª parcela</span>
+              <span class="block text-sm">Reserva programada para o dia 26</span>
+            </span>
+            <span class="valor shrink-0 font-extrabold text-slate-900">R$ 435</span>
+            <span class="pill shrink-0 bg-slate-100 text-slate-500">Programado</span>
+          </li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="mt-8 flex flex-wrap gap-3">
+      <a href="/orcamento" class="btn btn-primary">Levar isso para o orçamento</a>
+      <a href="/" class="btn btn-ghost">Voltar ao painel</a>
+    </div>
+
+    <p class="mt-8 text-xs leading-relaxed text-slate-400">Conexões Open Finance seguem o padrão regulado pelo Banco Central. Você pode revisar ou revogar cada consentimento a qualquer momento, sem perder o histórico já organizado.</p>
+  </section>
+
+  <footer class="mt-14 border-t border-slate-200/70 pt-6 text-center text-xs text-slate-400">
+    Fôlego · Finanças Serenas — números para dormir tranquilo, não para se assustar.
+  </footer>
+</main>
+
+<nav class="fixed inset-x-0 bottom-0 z-40 border-t border-slate-200 bg-white/95 pb-[env(safe-area-inset-bottom)] backdrop-blur md:hidden">
+  <div class="mx-auto flex max-w-md">
+    <a href="/" class="tab"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" class="h-5 w-5"><path d="M4 10.5 12 4l8 6.5V20a1 1 0 0 1-1 1h-4v-6H9v6H5a1 1 0 0 1-1-1Z" stroke-linejoin="round"/></svg>Painel</a>
+    <a href="/contas" class="tab tab-on"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" class="h-5 w-5"><rect x="3" y="6" width="18" height="13" rx="2.5"/><path d="M3 10h18" stroke-linecap="round"/></svg>Contas</a>
+    <a href="/orcamento" class="tab"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" class="h-5 w-5"><path d="M12 3a9 9 0 1 0 9 9h-9Z" stroke-linejoin="round"/><path d="M14 3.4A9 9 0 0 1 20.6 10H14Z" stroke-linejoin="round"/></svg>Orçamento</a>
+    <a href="/metas" class="tab"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" class="h-5 w-5"><circle cx="12" cy="12" r="8"/><circle cx="12" cy="12" r="3.4"/></svg>Metas</a>
+  </div>
+</nav>
+
+<script>
+  const btnDiscreto = document.getElementById('btn-discreto');
+  btnDiscreto.addEventListener('click', () => {
+    const ativo = document.body.classList.toggle('discreto');
+    btnDiscreto.textContent = ativo ? 'Mostrar valores' : 'Modo discreto';
+  });
+
+  const btnSincronizar = document.getElementById('btn-sincronizar');
+  const txtSincronizar = document.getElementById('txt-sincronizar');
+  btnSincronizar.addEventListener('click', () => {
+    txtSincronizar.textContent = 'Sincronizando...';
+    setTimeout(() => { txtSincronizar.textContent = 'Sincronizado agora mesmo'; }, 1200);
+  });
+</script>
+</body>
+</html>

@@ -1,0 +1,318 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Fôlego · Mural de Sonhos</title>
+<meta name="description" content="Mural de Sonhos do Fôlego: metas de curto, médio e longo prazo da família." />
+<meta name="theme-color" content="#f7f9fb" />
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='88'>🌿</text></svg>" />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet" />
+<script src="https://cdn.tailwindcss.com"></script>
+<script>
+  tailwind.config = {
+    theme: {
+      extend: {
+        colors: {
+          sereno: '#f7f9fb',
+          folego: { 50:'#eff6ff',100:'#dbeafe',200:'#bfdbfe',300:'#93c5fd',400:'#60a5fa',500:'#3b82f6',600:'#2563eb',700:'#1d4ed8',800:'#1e40af',900:'#1e3a8a' },
+          menta:  { 50:'#eefaf4',100:'#d5f1e5',300:'#7fd3b1',500:'#3fae86',700:'#27795c' },
+          areia:  { 50:'#fdf7ec',100:'#faedd6',300:'#eccb92',500:'#c9973f',700:'#946a22' }
+        },
+        fontFamily: { sans: ['"Plus Jakarta Sans"','ui-sans-serif','system-ui','sans-serif'] },
+        boxShadow: {
+          suave: '0 1px 2px rgba(15,23,42,.04), 0 14px 34px -22px rgba(15,23,42,.35)',
+          serena: '0 24px 50px -28px rgba(37,99,235,.55)'
+        }
+      }
+    }
+  }
+</script>
+<style type="text/tailwindcss">
+  @layer base {
+    body { @apply bg-sereno font-sans text-slate-600 antialiased; }
+    h1,h2,h3 { @apply text-slate-900; }
+  }
+  @layer components {
+    .card { @apply rounded-3xl border border-white bg-white/80 shadow-suave backdrop-blur; }
+    .nav-link { @apply rounded-full px-3.5 py-2 text-sm font-semibold text-slate-500 transition hover:bg-white hover:text-folego-700; }
+    .nav-on { @apply bg-white text-folego-700 shadow-suave; }
+    .tab { @apply flex flex-1 flex-col items-center gap-1 py-2.5 text-[11px] font-semibold text-slate-400 transition; }
+    .tab-on { @apply text-folego-600; }
+    .pill { @apply inline-flex items-center gap-1.5 rounded-full px-3 py-1 text-xs font-semibold; }
+    .btn { @apply inline-flex items-center justify-center gap-2 rounded-full px-5 py-3 text-sm font-bold transition; }
+    .btn-primary { @apply bg-folego-600 text-white shadow-serena hover:bg-folego-700; }
+    .btn-ghost { @apply border border-slate-200 bg-white text-slate-700 hover:border-folego-200 hover:text-folego-700; }
+    .sonho { @apply card p-5 transition hover:-translate-y-0.5; }
+    .avatar { @apply grid h-7 w-7 place-items-center rounded-full border-2 border-white text-[10px] font-bold text-white; }
+  }
+</style>
+</head>
+<body class="min-h-screen pb-24 md:pb-0">
+
+<div aria-hidden="true" class="pointer-events-none fixed inset-0 -z-10 overflow-hidden">
+  <div class="absolute -left-24 -top-32 h-80 w-80 rounded-full bg-folego-100/70 blur-3xl"></div>
+  <div class="absolute -right-16 bottom-10 h-96 w-96 rounded-full bg-menta-100/60 blur-3xl"></div>
+</div>
+
+<header class="sticky top-0 z-40 border-b border-white/70 bg-sereno/85 backdrop-blur">
+  <div class="mx-auto flex max-w-6xl items-center justify-between gap-4 px-5 py-3.5">
+    <a href="/" class="flex items-center gap-2.5">
+      <span class="grid h-9 w-9 place-items-center rounded-2xl bg-folego-600 text-white shadow-serena">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" class="h-5 w-5"><path d="M4 14c0-4 3-8 8-9 5 1 8 5 8 9a5 5 0 0 1-8 4 5 5 0 0 1-8-4Z" stroke-linejoin="round"/><path d="M12 5v13" stroke-linecap="round"/></svg>
+      </span>
+      <span class="text-[15px] font-extrabold tracking-tight text-slate-900">Fôlego</span>
+    </a>
+    <nav class="hidden items-center gap-1 md:flex">
+      <a href="/" class="nav-link">Painel</a>
+      <a href="/contas" class="nav-link">Contas</a>
+      <a href="/orcamento" class="nav-link">Orçamento</a>
+      <a href="/metas" class="nav-link nav-on">Metas</a>
+      <a href="/boas-vindas" class="nav-link">Boas-vindas</a>
+    </nav>
+    <a href="/login" class="grid h-9 w-9 place-items-center rounded-full bg-folego-100 text-sm font-extrabold text-folego-700" title="Sua conta">BM</a>
+  </div>
+</header>
+
+<main class="mx-auto max-w-6xl px-5 py-8">
+
+  <section class="mb-8 flex flex-wrap items-end justify-between gap-4">
+    <div>
+      <span class="pill bg-menta-100 text-menta-700">Mural de Sonhos</span>
+      <h1 class="mt-3 text-3xl font-extrabold tracking-tight sm:text-4xl">O dinheiro guardado tem nome e rosto.</h1>
+      <p class="mt-2 max-w-2xl text-[15px] leading-relaxed">Cada sonho recebe uma parte dos 20% do futuro. Não é sacrifício abstrato: é a viagem, a casa, a noite de sono tranquila.</p>
+    </div>
+    <button class="btn btn-primary">+ Novo sonho</button>
+  </section>
+
+  <section class="grid gap-5 sm:grid-cols-3">
+    <div class="card p-6">
+      <p class="text-sm font-bold text-slate-500">Guardado no total</p>
+      <p class="mt-3 text-3xl font-extrabold tracking-tight text-slate-900">R$ 50.000</p>
+      <p class="mt-1 text-sm">Em 6 sonhos ativos</p>
+    </div>
+    <div class="card p-6">
+      <p class="text-sm font-bold text-slate-500">Aporte mensal combinado</p>
+      <p class="mt-3 text-3xl font-extrabold tracking-tight text-slate-900">R$ 2.120</p>
+      <p class="mt-1 text-sm">Automático no dia do salário</p>
+    </div>
+    <div class="card p-6">
+      <p class="text-sm font-bold text-slate-500">Próximo a realizar</p>
+      <p class="mt-3 text-3xl font-extrabold tracking-tight text-menta-700">Bicicleta</p>
+      <p class="mt-1 text-sm">Faltam R$ 180 · cerca de 12 dias</p>
+    </div>
+  </section>
+
+  <section class="mt-10 grid gap-6 lg:grid-cols-3">
+
+    <div>
+      <div class="mb-4 flex items-center justify-between">
+        <h2 class="text-lg font-extrabold tracking-tight">Curto prazo</h2>
+        <span class="pill bg-menta-100 text-menta-700">até 12 meses</span>
+      </div>
+      <div class="space-y-4">
+        <article class="sonho">
+          <div class="flex items-start justify-between gap-3">
+            <span class="text-3xl">🚲</span>
+            <span class="pill bg-menta-100 text-menta-700">96%</span>
+          </div>
+          <h3 class="mt-3 font-extrabold tracking-tight">Bicicleta da Lia</h3>
+          <p class="text-sm">R$ 1.820 de R$ 2.000</p>
+          <div class="mt-3 h-2 overflow-hidden rounded-full bg-slate-100"><div class="h-full w-[96%] rounded-full bg-menta-500"></div></div>
+          <div class="mt-4 flex items-center justify-between">
+            <div class="flex -space-x-2"><span class="avatar bg-folego-600">B</span><span class="avatar bg-menta-500">M</span></div>
+            <span class="text-xs font-bold text-menta-700">Chega em setembro</span>
+          </div>
+        </article>
+
+        <article class="sonho">
+          <div class="flex items-start justify-between gap-3">
+            <span class="text-3xl">🛟</span>
+            <span class="pill bg-folego-50 text-folego-700">53%</span>
+          </div>
+          <h3 class="mt-3 font-extrabold tracking-tight">Reserva de emergência</h3>
+          <p class="text-sm">R$ 18.400 de R$ 35.000</p>
+          <div class="mt-3 h-2 overflow-hidden rounded-full bg-slate-100"><div class="h-full w-[53%] rounded-full bg-folego-600"></div></div>
+          <div class="mt-4 flex items-center justify-between">
+            <div class="flex -space-x-2"><span class="avatar bg-folego-600">B</span><span class="avatar bg-menta-500">M</span></div>
+            <span class="text-xs font-bold text-slate-400">R$ 1.100 por mês</span>
+          </div>
+        </article>
+
+        <article class="sonho">
+          <div class="flex items-start justify-between gap-3">
+            <span class="text-3xl">🦷</span>
+            <span class="pill bg-areia-100 text-areia-700">40%</span>
+          </div>
+          <h3 class="mt-3 font-extrabold tracking-tight">Tratamento odontológico</h3>
+          <p class="text-sm">R$ 1.600 de R$ 4.000</p>
+          <div class="mt-3 h-2 overflow-hidden rounded-full bg-slate-100"><div class="h-full w-[40%] rounded-full bg-areia-500"></div></div>
+          <div class="mt-4 flex items-center justify-between">
+            <div class="flex -space-x-2"><span class="avatar bg-menta-500">M</span></div>
+            <span class="text-xs font-bold text-slate-400">R$ 300 por mês</span>
+          </div>
+        </article>
+      </div>
+    </div>
+
+    <div>
+      <div class="mb-4 flex items-center justify-between">
+        <h2 class="text-lg font-extrabold tracking-tight">Médio prazo</h2>
+        <span class="pill bg-folego-50 text-folego-700">1 a 5 anos</span>
+      </div>
+      <div class="space-y-4">
+        <article class="sonho">
+          <div class="flex items-start justify-between gap-3">
+            <span class="text-3xl">🏖️</span>
+            <span class="pill bg-menta-100 text-menta-700">46%</span>
+          </div>
+          <h3 class="mt-3 font-extrabold tracking-tight">Férias em família</h3>
+          <p class="text-sm">R$ 4.100 de R$ 9.000</p>
+          <div class="mt-3 h-2 overflow-hidden rounded-full bg-slate-100"><div class="h-full w-[46%] rounded-full bg-menta-500"></div></div>
+          <div class="mt-4 flex items-center justify-between">
+            <div class="flex -space-x-2"><span class="avatar bg-folego-600">B</span><span class="avatar bg-menta-500">M</span></div>
+            <span class="text-xs font-bold text-slate-400">Julho de 2027</span>
+          </div>
+        </article>
+
+        <article class="sonho">
+          <div class="flex items-start justify-between gap-3">
+            <span class="text-3xl">🚗</span>
+            <span class="pill bg-folego-50 text-folego-700">28%</span>
+          </div>
+          <h3 class="mt-3 font-extrabold tracking-tight">Trocar o carro</h3>
+          <p class="text-sm">R$ 8.400 de R$ 30.000</p>
+          <div class="mt-3 h-2 overflow-hidden rounded-full bg-slate-100"><div class="h-full w-[28%] rounded-full bg-folego-600"></div></div>
+          <div class="mt-4 flex items-center justify-between">
+            <div class="flex -space-x-2"><span class="avatar bg-folego-600">B</span></div>
+            <span class="text-xs font-bold text-slate-400">R$ 500 por mês</span>
+          </div>
+        </article>
+
+        <button class="flex w-full items-center justify-center gap-2 rounded-3xl border-2 border-dashed border-slate-300 p-6 text-sm font-bold text-slate-500 transition hover:border-folego-300 hover:text-folego-700">
+          + Adicionar sonho de médio prazo
+        </button>
+      </div>
+    </div>
+
+    <div>
+      <div class="mb-4 flex items-center justify-between">
+        <h2 class="text-lg font-extrabold tracking-tight">Longo prazo</h2>
+        <span class="pill bg-areia-100 text-areia-700">5 anos ou mais</span>
+      </div>
+      <div class="space-y-4">
+        <article class="sonho">
+          <div class="flex items-start justify-between gap-3">
+            <span class="text-3xl">🏡</span>
+            <span class="pill bg-areia-100 text-areia-700">23%</span>
+          </div>
+          <h3 class="mt-3 font-extrabold tracking-tight">Entrada da casa</h3>
+          <p class="text-sm">R$ 27.500 de R$ 120.000</p>
+          <div class="mt-3 h-2 overflow-hidden rounded-full bg-slate-100"><div class="h-full w-[23%] rounded-full bg-areia-500"></div></div>
+          <div class="mt-4 flex items-center justify-between">
+            <div class="flex -space-x-2"><span class="avatar bg-folego-600">B</span><span class="avatar bg-menta-500">M</span></div>
+            <span class="text-xs font-bold text-slate-400">R$ 620 por mês</span>
+          </div>
+        </article>
+
+        <article class="sonho">
+          <div class="flex items-start justify-between gap-3">
+            <span class="text-3xl">🎓</span>
+            <span class="pill bg-folego-50 text-folego-700">12%</span>
+          </div>
+          <h3 class="mt-3 font-extrabold tracking-tight">Faculdade das crianças</h3>
+          <p class="text-sm">R$ 9.600 de R$ 80.000</p>
+          <div class="mt-3 h-2 overflow-hidden rounded-full bg-slate-100"><div class="h-full w-[12%] rounded-full bg-folego-600"></div></div>
+          <div class="mt-4 flex items-center justify-between">
+            <div class="flex -space-x-2"><span class="avatar bg-menta-500">M</span></div>
+            <span class="text-xs font-bold text-slate-400">Aporte anual</span>
+          </div>
+        </article>
+
+        <article class="sonho bg-folego-600/95 text-folego-50">
+          <div class="flex items-start justify-between gap-3">
+            <span class="text-3xl">🌅</span>
+            <span class="pill bg-white/15 text-white">Sonho maior</span>
+          </div>
+          <h3 class="mt-3 font-extrabold tracking-tight text-white">Trabalhar por escolha, não por medo</h3>
+          <p class="mt-1 text-sm text-folego-50/90">Quando os Dias de Fôlego passarem de 365, esse sonho deixa de ser sonho.</p>
+          <p class="mt-4 text-xs font-bold text-folego-100">Hoje: 47 de 365 dias</p>
+          <div class="mt-2 h-2 overflow-hidden rounded-full bg-white/20"><div class="h-full w-[13%] rounded-full bg-white"></div></div>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <section class="card mt-10 p-7">
+    <div class="flex flex-wrap items-start justify-between gap-4">
+      <div class="max-w-md">
+        <h2 class="text-xl font-extrabold tracking-tight">E se sobrar um pouco a mais?</h2>
+        <p class="mt-1.5 text-sm">Simule um aporte extra por mês na reserva de emergência e veja quando ela fica pronta. Sem promessa, só matemática.</p>
+      </div>
+      <div class="text-right">
+        <p id="extra-rotulo" class="text-3xl font-extrabold text-folego-600">R$ 0</p>
+        <p class="text-xs font-semibold text-slate-400">a mais por mês</p>
+      </div>
+    </div>
+    <input id="extra" type="range" min="0" max="600" step="50" value="0" class="mt-6 w-full accent-folego-600" />
+    <div class="mt-5 grid gap-4 sm:grid-cols-3">
+      <div class="rounded-2xl bg-slate-50 p-4">
+        <p class="text-xs font-bold uppercase tracking-wide text-slate-400">Falta guardar</p>
+        <p class="mt-1 text-xl font-extrabold text-slate-900">R$ 16.600</p>
+      </div>
+      <div class="rounded-2xl bg-slate-50 p-4">
+        <p class="text-xs font-bold uppercase tracking-wide text-slate-400">Tempo estimado</p>
+        <p id="prazo" class="mt-1 text-xl font-extrabold text-slate-900">16 meses</p>
+      </div>
+      <div class="rounded-2xl bg-menta-50 p-4">
+        <p class="text-xs font-bold uppercase tracking-wide text-menta-700/70">Antecipação</p>
+        <p id="ganho" class="mt-1 text-xl font-extrabold text-menta-700">nenhuma ainda</p>
+      </div>
+    </div>
+    <div class="mt-6 flex flex-wrap gap-3">
+      <a href="/orcamento" class="btn btn-ghost">Ver de onde tirar</a>
+      <a href="/" class="btn btn-ghost">Voltar ao painel</a>
+    </div>
+  </section>
+
+  <footer class="mt-14 border-t border-slate-200/70 pt-6 text-center text-xs text-slate-400">
+    Fôlego · Finanças Serenas — números para dormir tranquilo, não para se assustar.
+  </footer>
+</main>
+
+<nav class="fixed inset-x-0 bottom-0 z-40 border-t border-slate-200 bg-white/95 pb-[env(safe-area-inset-bottom)] backdrop-blur md:hidden">
+  <div class="mx-auto flex max-w-md">
+    <a href="/" class="tab"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" class="h-5 w-5"><path d="M4 10.5 12 4l8 6.5V20a1 1 0 0 1-1 1h-4v-6H9v6H5a1 1 0 0 1-1-1Z" stroke-linejoin="round"/></svg>Painel</a>
+    <a href="/contas" class="tab"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" class="h-5 w-5"><rect x="3" y="6" width="18" height="13" rx="2.5"/><path d="M3 10h18" stroke-linecap="round"/></svg>Contas</a>
+    <a href="/orcamento" class="tab"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" class="h-5 w-5"><path d="M12 3a9 9 0 1 0 9 9h-9Z" stroke-linejoin="round"/><path d="M14 3.4A9 9 0 0 1 20.6 10H14Z" stroke-linejoin="round"/></svg>Orçamento</a>
+    <a href="/metas" class="tab tab-on"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" class="h-5 w-5"><circle cx="12" cy="12" r="8"/><circle cx="12" cy="12" r="3.4"/></svg>Metas</a>
+  </div>
+</nav>
+
+<script>
+  const FALTA = 16600;
+  const APORTE = 1100;
+  const extra = document.getElementById('extra');
+  const rotulo = document.getElementById('extra-rotulo');
+  const prazo = document.getElementById('prazo');
+  const ganho = document.getElementById('ganho');
+  const base = Math.ceil(FALTA / APORTE);
+
+  const simular = () => {
+    const valor = Number(extra.value);
+    const meses = Math.ceil(FALTA / (APORTE + valor));
+    rotulo.textContent = 'R$ ' + valor;
+    prazo.textContent = meses + (meses === 1 ? ' mês' : ' meses');
+    const diferenca = base - meses;
+    ganho.textContent = diferenca > 0
+      ? diferenca + (diferenca === 1 ? ' mês antes' : ' meses antes')
+      : 'nenhuma ainda';
+  };
+
+  extra.addEventListener('input', simular);
+  simular();
+</script>
+</body>
+</html>

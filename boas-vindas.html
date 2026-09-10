@@ -1,0 +1,254 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Fôlego · Boas-vindas</title>
+<meta name="description" content="Onboarding do Fôlego em três atos: passado sem culpa, presente seguro e futuro planejado." />
+<meta name="theme-color" content="#f7f9fb" />
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='88'>🌿</text></svg>" />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet" />
+<script src="https://cdn.tailwindcss.com"></script>
+<script>
+  tailwind.config = {
+    theme: {
+      extend: {
+        colors: {
+          sereno: '#f7f9fb',
+          folego: { 50:'#eff6ff',100:'#dbeafe',200:'#bfdbfe',300:'#93c5fd',400:'#60a5fa',500:'#3b82f6',600:'#2563eb',700:'#1d4ed8',800:'#1e40af',900:'#1e3a8a' },
+          menta:  { 50:'#eefaf4',100:'#d5f1e5',300:'#7fd3b1',500:'#3fae86',700:'#27795c' },
+          areia:  { 50:'#fdf7ec',100:'#faedd6',300:'#eccb92',500:'#c9973f',700:'#946a22' }
+        },
+        fontFamily: { sans: ['"Plus Jakarta Sans"','ui-sans-serif','system-ui','sans-serif'] },
+        boxShadow: {
+          suave: '0 1px 2px rgba(15,23,42,.04), 0 14px 34px -22px rgba(15,23,42,.35)',
+          serena: '0 24px 50px -28px rgba(37,99,235,.55)'
+        }
+      }
+    }
+  }
+</script>
+<style type="text/tailwindcss">
+  @layer base {
+    body { @apply bg-sereno font-sans text-slate-600 antialiased; }
+    h1,h2,h3 { @apply text-slate-900; }
+  }
+  @layer components {
+    .card { @apply rounded-3xl border border-white bg-white/80 shadow-suave backdrop-blur; }
+    .pill { @apply inline-flex items-center gap-1.5 rounded-full px-3 py-1 text-xs font-semibold; }
+    .btn { @apply inline-flex items-center justify-center gap-2 rounded-full px-5 py-3 text-sm font-bold transition; }
+    .btn-primary { @apply bg-folego-600 text-white shadow-serena hover:bg-folego-700; }
+    .btn-ghost { @apply border border-slate-200 bg-white text-slate-700 hover:border-folego-200 hover:text-folego-700; }
+    .escolha { @apply flex cursor-pointer items-start gap-3 rounded-2xl border border-slate-200 bg-white p-4 transition hover:border-folego-300; }
+  }
+</style>
+</head>
+<body class="min-h-screen">
+
+<div aria-hidden="true" class="pointer-events-none fixed inset-0 -z-10 overflow-hidden">
+  <div class="absolute -left-24 -top-32 h-80 w-80 rounded-full bg-folego-100/70 blur-3xl"></div>
+  <div class="absolute -right-20 bottom-0 h-96 w-96 rounded-full bg-menta-100/60 blur-3xl"></div>
+</div>
+
+<header class="mx-auto flex max-w-3xl items-center justify-between gap-4 px-5 py-6">
+  <a href="/" class="flex items-center gap-2.5">
+    <span class="grid h-9 w-9 place-items-center rounded-2xl bg-folego-600 text-white shadow-serena">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" class="h-5 w-5"><path d="M4 14c0-4 3-8 8-9 5 1 8 5 8 9a5 5 0 0 1-8 4 5 5 0 0 1-8-4Z" stroke-linejoin="round"/><path d="M12 5v13" stroke-linecap="round"/></svg>
+    </span>
+    <span class="text-[15px] font-extrabold tracking-tight text-slate-900">Fôlego</span>
+  </a>
+  <a href="/" class="text-sm font-semibold text-slate-500 hover:text-slate-700">Pular por enquanto</a>
+</header>
+
+<main class="mx-auto max-w-3xl px-5 pb-16">
+
+  <div class="mb-8">
+    <div class="flex items-center justify-between text-xs font-bold uppercase tracking-wide text-slate-400">
+      <span id="rotulo-ato">Ato 1 de 3</span>
+      <span id="rotulo-tempo">cerca de 4 minutos no total</span>
+    </div>
+    <div class="mt-2.5 h-2 overflow-hidden rounded-full bg-slate-200">
+      <div id="progresso" class="h-full w-1/3 rounded-full bg-folego-600 transition-all duration-500"></div>
+    </div>
+    <ol class="mt-4 grid grid-cols-3 gap-2 text-center text-[11px] font-bold uppercase tracking-wide">
+      <li data-ponto="1" class="rounded-full bg-folego-50 py-1.5 text-folego-700">Passado</li>
+      <li data-ponto="2" class="rounded-full bg-slate-100 py-1.5 text-slate-400">Presente</li>
+      <li data-ponto="3" class="rounded-full bg-slate-100 py-1.5 text-slate-400">Futuro</li>
+    </ol>
+  </div>
+
+  <!-- ATO 1 -->
+  <section data-ato="1" class="card p-8 sm:p-10">
+    <span class="pill bg-folego-50 text-folego-700">Ato 1 · Passado sem culpa</span>
+    <h1 class="mt-4 text-3xl font-extrabold tracking-tight sm:text-4xl">O que já aconteceu não vai ser cobrado aqui.</h1>
+    <p class="mt-3 text-[15px] leading-relaxed">Vamos ler os últimos 12 meses só para entender o ritmo da sua casa. Nenhuma tela vai dizer que você errou, nem comparar sua vida com a de ninguém.</p>
+
+    <div class="mt-7 grid gap-3 sm:grid-cols-3">
+      <div class="rounded-2xl bg-slate-50 p-4">
+        <p class="text-xs font-bold uppercase tracking-wide text-slate-400">Lemos</p>
+        <p class="mt-1 font-bold text-slate-900">12 meses de extrato</p>
+      </div>
+      <div class="rounded-2xl bg-slate-50 p-4">
+        <p class="text-xs font-bold uppercase tracking-wide text-slate-400">Buscamos</p>
+        <p class="mt-1 font-bold text-slate-900">Seu custo essencial</p>
+      </div>
+      <div class="rounded-2xl bg-slate-50 p-4">
+        <p class="text-xs font-bold uppercase tracking-wide text-slate-400">Ignoramos</p>
+        <p class="mt-1 font-bold text-slate-900">Julgamento e culpa</p>
+      </div>
+    </div>
+
+    <p class="mt-7 text-sm font-bold text-slate-700">Como você prefere começar?</p>
+    <div class="mt-3 space-y-3">
+      <label class="escolha">
+        <input type="radio" name="ato1" checked class="mt-0.5 h-5 w-5 shrink-0 border-slate-300 text-folego-600 focus:ring-folego-500" />
+        <span>
+          <span class="block font-bold text-slate-900">Importar o histórico pelo Open Finance</span>
+          <span class="block text-sm">Leitura automática e segura, sem digitar nada.</span>
+        </span>
+      </label>
+      <label class="escolha">
+        <input type="radio" name="ato1" class="mt-0.5 h-5 w-5 shrink-0 border-slate-300 text-folego-600 focus:ring-folego-500" />
+        <span>
+          <span class="block font-bold text-slate-900">Começar do zero, a partir de hoje</span>
+          <span class="block text-sm">Sem olhar para trás. Perfeitamente válido também.</span>
+        </span>
+      </label>
+    </div>
+
+    <blockquote class="mt-7 rounded-2xl border-l-4 border-folego-300 bg-folego-50/60 p-4 text-sm italic leading-relaxed text-slate-600">
+      "Dívida não é caráter. É matemática com data marcada — e matemática a gente resolve junto."
+    </blockquote>
+  </section>
+
+  <!-- ATO 2 -->
+  <section data-ato="2" class="card hidden p-8 sm:p-10">
+    <span class="pill bg-menta-100 text-menta-700">Ato 2 · Presente seguro</span>
+    <h1 class="mt-4 text-3xl font-extrabold tracking-tight sm:text-4xl">Primeiro o chão firme. Depois o resto.</h1>
+    <p class="mt-3 text-[15px] leading-relaxed">Conecte as contas da casa e nós calculamos seus <strong class="font-bold text-slate-900">Dias de Fôlego</strong>: quantos dias sua família atravessa com tranquilidade se a renda parar hoje.</p>
+
+    <div class="mt-7 space-y-3">
+      <div class="flex items-center gap-4 rounded-2xl border border-menta-100 bg-menta-50/60 p-4">
+        <span class="grid h-11 w-11 shrink-0 place-items-center rounded-2xl bg-white text-lg font-extrabold text-menta-700">BB</span>
+        <span class="flex-1"><span class="block font-bold text-slate-900">Conta corrente conjunta</span><span class="block text-sm">Conectada e sincronizando</span></span>
+        <span class="pill bg-menta-100 text-menta-700">Pronto</span>
+      </div>
+      <div class="flex items-center gap-4 rounded-2xl border border-menta-100 bg-menta-50/60 p-4">
+        <span class="grid h-11 w-11 shrink-0 place-items-center rounded-2xl bg-white text-lg font-extrabold text-menta-700">NU</span>
+        <span class="flex-1"><span class="block font-bold text-slate-900">Cartão de crédito</span><span class="block text-sm">Faturas futuras já mapeadas</span></span>
+        <span class="pill bg-menta-100 text-menta-700">Pronto</span>
+      </div>
+      <button type="button" class="flex w-full items-center gap-4 rounded-2xl border border-dashed border-slate-300 p-4 text-left transition hover:border-folego-300 hover:bg-folego-50/40">
+        <span class="grid h-11 w-11 shrink-0 place-items-center rounded-2xl bg-slate-100 text-xl text-slate-500">+</span>
+        <span class="flex-1"><span class="block font-bold text-slate-900">Adicionar outra instituição</span><span class="block text-sm">Você autoriza, e pode revogar quando quiser.</span></span>
+      </button>
+    </div>
+
+    <div class="mt-7 rounded-2xl bg-folego-600 p-6 text-white shadow-serena">
+      <p class="text-sm font-semibold text-folego-100">Com o que já conectamos</p>
+      <p class="mt-1 text-4xl font-extrabold tracking-tight">47 dias de fôlego</p>
+      <p class="mt-2 text-sm leading-relaxed text-folego-50/90">É o seu ponto de partida. A partir daqui, cada decisão pequena vira mais alguns dias.</p>
+    </div>
+  </section>
+
+  <!-- ATO 3 -->
+  <section data-ato="3" class="card hidden p-8 sm:p-10">
+    <span class="pill bg-areia-100 text-areia-700">Ato 3 · Futuro planejado</span>
+    <h1 class="mt-4 text-3xl font-extrabold tracking-tight sm:text-4xl">Escolha um sonho e um horário sagrado.</h1>
+    <p class="mt-3 text-[15px] leading-relaxed">Um sonho para o mural e quinze minutos por semana com quem divide a casa. É só isso que sustenta o resto.</p>
+
+    <p class="mt-7 text-sm font-bold text-slate-700">Qual sonho abre o seu mural?</p>
+    <div class="mt-3 grid gap-3 sm:grid-cols-3">
+      <label class="escolha flex-col items-start gap-2">
+        <input type="radio" name="sonho" checked class="h-5 w-5 border-slate-300 text-folego-600 focus:ring-folego-500" />
+        <span class="text-2xl">🛟</span>
+        <span class="block font-bold text-slate-900">Reserva tranquila</span>
+        <span class="block text-sm">Curto prazo</span>
+      </label>
+      <label class="escolha flex-col items-start gap-2">
+        <input type="radio" name="sonho" class="h-5 w-5 border-slate-300 text-folego-600 focus:ring-folego-500" />
+        <span class="text-2xl">🏖️</span>
+        <span class="block font-bold text-slate-900">Viagem em família</span>
+        <span class="block text-sm">Médio prazo</span>
+      </label>
+      <label class="escolha flex-col items-start gap-2">
+        <input type="radio" name="sonho" class="h-5 w-5 border-slate-300 text-folego-600 focus:ring-folego-500" />
+        <span class="text-2xl">🏡</span>
+        <span class="block font-bold text-slate-900">Casa própria</span>
+        <span class="block text-sm">Longo prazo</span>
+      </label>
+    </div>
+
+    <p class="mt-7 text-sm font-bold text-slate-700">Quando acontece o ritual semanal?</p>
+    <div class="mt-3 grid gap-3 sm:grid-cols-2">
+      <label class="escolha">
+        <input type="radio" name="ritual" checked class="mt-0.5 h-5 w-5 shrink-0 border-slate-300 text-folego-600 focus:ring-folego-500" />
+        <span><span class="block font-bold text-slate-900">Domingo, 20h</span><span class="block text-sm">A semana começa combinada.</span></span>
+      </label>
+      <label class="escolha">
+        <input type="radio" name="ritual" class="mt-0.5 h-5 w-5 shrink-0 border-slate-300 text-folego-600 focus:ring-folego-500" />
+        <span><span class="block font-bold text-slate-900">Sexta, 19h</span><span class="block text-sm">Fechar a semana e descansar.</span></span>
+      </label>
+    </div>
+
+    <div class="mt-7 rounded-2xl border border-slate-200 bg-slate-50 p-5">
+      <p class="font-bold text-slate-900">Convide quem divide as contas</p>
+      <p class="mt-1 text-sm">O orçamento 50/30/20 fica proporcional à renda de cada um, sem ninguém carregar peso demais.</p>
+      <div class="mt-3 flex flex-wrap gap-2">
+        <span class="pill bg-white text-slate-600">Bruno · você</span>
+        <span class="pill bg-white text-slate-600">Marina · convidada</span>
+        <a href="/orcamento" class="pill bg-folego-600 text-white">Ver a divisão</a>
+      </div>
+    </div>
+  </section>
+
+  <div class="mt-8 flex items-center justify-between gap-3">
+    <button id="voltar" type="button" class="btn btn-ghost invisible">Voltar</button>
+    <button id="avancar" type="button" class="btn btn-primary">
+      Continuar
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="h-4 w-4"><path d="M5 12h14m-6-6 6 6-6 6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+    </button>
+  </div>
+
+  <p class="mt-8 text-center text-sm">Já tem conta? <a href="/login" class="font-bold text-folego-600 hover:text-folego-700">Entrar com biometria</a></p>
+</main>
+
+<script>
+  const atos = document.querySelectorAll('[data-ato]');
+  const pontos = document.querySelectorAll('[data-ponto]');
+  const progresso = document.getElementById('progresso');
+  const rotuloAto = document.getElementById('rotulo-ato');
+  const rotuloTempo = document.getElementById('rotulo-tempo');
+  const voltar = document.getElementById('voltar');
+  const avancar = document.getElementById('avancar');
+  const tempos = ['cerca de 4 minutos no total', 'faltam 2 minutos', 'último passo'];
+  let atual = 1;
+
+  const mostrar = (indice) => {
+    atual = indice;
+    atos.forEach((ato) => ato.classList.toggle('hidden', Number(ato.dataset.ato) !== atual));
+    pontos.forEach((ponto) => {
+      const ativo = Number(ponto.dataset.ponto) <= atual;
+      ponto.className = ativo
+        ? 'rounded-full bg-folego-50 py-1.5 text-folego-700'
+        : 'rounded-full bg-slate-100 py-1.5 text-slate-400';
+    });
+    progresso.style.width = (atual / atos.length) * 100 + '%';
+    rotuloAto.textContent = 'Ato ' + atual + ' de ' + atos.length;
+    rotuloTempo.textContent = tempos[atual - 1];
+    voltar.classList.toggle('invisible', atual === 1);
+    avancar.firstChild.textContent = atual === atos.length ? 'Abrir meu painel ' : 'Continuar ';
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  };
+
+  avancar.addEventListener('click', () => {
+    if (atual === atos.length) { window.location.href = '/'; return; }
+    mostrar(atual + 1);
+  });
+  voltar.addEventListener('click', () => mostrar(Math.max(1, atual - 1)));
+  mostrar(1);
+</script>
+</body>
+</html>

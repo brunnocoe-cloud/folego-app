@@ -1,0 +1,182 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Fôlego · Entrar</title>
+<meta name="description" content="Acesso acolhedor ao Fôlego, com biometria e sem sustos na primeira tela." />
+<meta name="theme-color" content="#f7f9fb" />
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='88'>🌿</text></svg>" />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet" />
+<script src="https://cdn.tailwindcss.com"></script>
+<script>
+  tailwind.config = {
+    theme: {
+      extend: {
+        colors: {
+          sereno: '#f7f9fb',
+          folego: { 50:'#eff6ff',100:'#dbeafe',200:'#bfdbfe',300:'#93c5fd',400:'#60a5fa',500:'#3b82f6',600:'#2563eb',700:'#1d4ed8',800:'#1e40af',900:'#1e3a8a' },
+          menta:  { 50:'#eefaf4',100:'#d5f1e5',300:'#7fd3b1',500:'#3fae86',700:'#27795c' },
+          areia:  { 50:'#fdf7ec',100:'#faedd6',300:'#eccb92',500:'#c9973f',700:'#946a22' }
+        },
+        fontFamily: { sans: ['"Plus Jakarta Sans"','ui-sans-serif','system-ui','sans-serif'] },
+        boxShadow: {
+          suave: '0 1px 2px rgba(15,23,42,.04), 0 14px 34px -22px rgba(15,23,42,.35)',
+          serena: '0 24px 50px -28px rgba(37,99,235,.55)'
+        },
+        keyframes: {
+          respirar: { '0%,100%': { transform: 'scale(1)', opacity: '.45' }, '50%': { transform: 'scale(1.18)', opacity: '.12' } }
+        },
+        animation: { respirar: 'respirar 3.6s ease-in-out infinite' }
+      }
+    }
+  }
+</script>
+<style type="text/tailwindcss">
+  @layer base {
+    body { @apply bg-sereno font-sans text-slate-600 antialiased; }
+    h1,h2,h3 { @apply text-slate-900; }
+  }
+  @layer components {
+    .card { @apply rounded-3xl border border-white bg-white/80 shadow-suave backdrop-blur; }
+    .pill { @apply inline-flex items-center gap-1.5 rounded-full px-3 py-1 text-xs font-semibold; }
+    .btn { @apply inline-flex items-center justify-center gap-2 rounded-full px-5 py-3 text-sm font-bold transition; }
+    .btn-primary { @apply bg-folego-600 text-white shadow-serena hover:bg-folego-700; }
+    .btn-ghost { @apply border border-slate-200 bg-white text-slate-700 hover:border-folego-200 hover:text-folego-700; }
+    .campo { @apply w-full rounded-2xl border border-slate-200 bg-white px-4 py-3 text-sm text-slate-800 outline-none transition placeholder:text-slate-400 focus:border-folego-400 focus:ring-4 focus:ring-folego-100; }
+  }
+</style>
+</head>
+<body class="min-h-screen">
+
+<div class="grid min-h-screen lg:grid-cols-2">
+
+  <aside class="relative hidden overflow-hidden bg-folego-600 p-12 text-white lg:flex lg:flex-col lg:justify-between">
+    <div aria-hidden="true" class="pointer-events-none absolute inset-0">
+      <div class="absolute -left-20 top-10 h-72 w-72 rounded-full bg-white/10 blur-2xl"></div>
+      <div class="absolute -bottom-24 right-0 h-96 w-96 rounded-full bg-folego-400/30 blur-3xl"></div>
+    </div>
+    <a href="/" class="relative flex items-center gap-2.5">
+      <span class="grid h-10 w-10 place-items-center rounded-2xl bg-white/15">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" class="h-5 w-5"><path d="M4 14c0-4 3-8 8-9 5 1 8 5 8 9a5 5 0 0 1-8 4 5 5 0 0 1-8-4Z" stroke-linejoin="round"/><path d="M12 5v13" stroke-linecap="round"/></svg>
+      </span>
+      <span class="text-lg font-extrabold tracking-tight">Fôlego</span>
+    </a>
+
+    <div class="relative max-w-md">
+      <p class="text-sm font-semibold uppercase tracking-[0.25em] text-folego-100">Finanças serenas</p>
+      <h2 class="mt-4 text-4xl font-extrabold leading-tight tracking-tight text-white">Abrir o app não precisa apertar o peito.</h2>
+      <p class="mt-5 text-[15px] leading-relaxed text-folego-50/90">Aqui, a primeira coisa que você vê é o que já está resolvido. As decisões vêm depois, no seu tempo, junto com quem divide a vida com você.</p>
+      <ul class="mt-8 space-y-3 text-sm text-folego-50/90">
+        <li class="flex items-center gap-3"><span class="grid h-6 w-6 shrink-0 place-items-center rounded-full bg-white/15">✓</span> Sem cobranças vermelhas na tela inicial</li>
+        <li class="flex items-center gap-3"><span class="grid h-6 w-6 shrink-0 place-items-center rounded-full bg-white/15">✓</span> Biometria: nenhuma senha para lembrar</li>
+        <li class="flex items-center gap-3"><span class="grid h-6 w-6 shrink-0 place-items-center rounded-full bg-white/15">✓</span> Dados protegidos pelo padrão do Open Finance</li>
+      </ul>
+    </div>
+
+    <p class="relative text-xs text-folego-100/80">Bruno &amp; Marina usam o Fôlego há 7 semanas seguidas.</p>
+  </aside>
+
+  <main class="flex items-center justify-center px-5 py-12">
+    <div class="w-full max-w-md">
+      <a href="/" class="mb-8 flex items-center gap-2.5 lg:hidden">
+        <span class="grid h-9 w-9 place-items-center rounded-2xl bg-folego-600 text-white shadow-serena">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" class="h-5 w-5"><path d="M4 14c0-4 3-8 8-9 5 1 8 5 8 9a5 5 0 0 1-8 4 5 5 0 0 1-8-4Z" stroke-linejoin="round"/><path d="M12 5v13" stroke-linecap="round"/></svg>
+        </span>
+        <span class="text-[15px] font-extrabold tracking-tight text-slate-900">Fôlego</span>
+      </a>
+
+      <p class="text-sm font-semibold text-folego-600">Bem-vindo de volta</p>
+      <h1 class="mt-1 text-3xl font-extrabold tracking-tight">Respire. Depois entre.</h1>
+      <p class="mt-2 text-[15px] leading-relaxed">Toque no sensor e mantenha o dedo por um instante. Nada de urgência: o app espera por você.</p>
+
+      <div class="card mt-8 p-8 text-center">
+        <div class="relative mx-auto grid h-32 w-32 place-items-center">
+          <span aria-hidden="true" class="absolute inset-0 rounded-full bg-folego-200 animate-respirar"></span>
+          <button id="biometria" type="button" aria-label="Entrar com biometria" class="relative grid h-24 w-24 place-items-center rounded-full bg-folego-600 text-white shadow-serena transition hover:bg-folego-700 focus:outline-none focus:ring-4 focus:ring-folego-200">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" class="h-11 w-11">
+              <path d="M12 4c-3.3 0-6 2.6-6 5.8v2.4c0 1.6-.3 3.2-.9 4.7"/>
+              <path d="M9 9.8a3 3 0 0 1 6 0v3.4c0 1.9-.3 3.7-1 5.4"/>
+              <path d="M12 9.6v4.2c0 2.1-.4 4.1-1.2 6"/>
+              <path d="M18 10.2v3c0 1.7-.2 3.4-.7 5"/>
+              <path d="M3.6 7.4A9.6 9.6 0 0 1 12 2.6c2.1 0 4 .6 5.6 1.8"/>
+            </svg>
+          </button>
+        </div>
+
+        <p id="mensagem" class="mt-6 text-sm font-semibold text-slate-700">Toque para entrar com biometria</p>
+        <p id="submensagem" class="mt-1 text-sm text-slate-500">Face ID e digital funcionam neste aparelho.</p>
+
+        <div class="mt-6 h-1.5 overflow-hidden rounded-full bg-slate-100">
+          <div id="progresso" class="h-full w-0 rounded-full bg-folego-600 transition-all duration-700"></div>
+        </div>
+
+        <button id="alternar-senha" type="button" class="mt-6 text-sm font-bold text-folego-600 hover:text-folego-700">Prefiro entrar com e-mail e senha</button>
+
+        <form id="form-senha" class="mt-6 hidden space-y-3 text-left" novalidate>
+          <label class="block">
+            <span class="mb-1.5 block text-xs font-bold uppercase tracking-wide text-slate-500">E-mail</span>
+            <input type="email" class="campo" placeholder="voce@email.com" autocomplete="username" />
+          </label>
+          <label class="block">
+            <span class="mb-1.5 block text-xs font-bold uppercase tracking-wide text-slate-500">Senha</span>
+            <input type="password" class="campo" placeholder="••••••••" autocomplete="current-password" />
+          </label>
+          <button type="submit" class="btn btn-primary w-full">Entrar com calma</button>
+          <p class="text-center text-xs text-slate-400">Esqueceu a senha? Enviamos um link, sem perguntas.</p>
+        </form>
+      </div>
+
+      <label class="mt-6 flex cursor-pointer items-start gap-3 rounded-2xl border border-slate-200 bg-white/70 p-4">
+        <input type="checkbox" id="modo-discreto" class="mt-0.5 h-5 w-5 shrink-0 rounded-md border-slate-300 text-folego-600 focus:ring-folego-500" />
+        <span>
+          <span class="block text-sm font-bold text-slate-900">Modo discreto</span>
+          <span class="block text-sm text-slate-500">Entrar com os valores ocultos. Você revela cada número quando quiser.</span>
+        </span>
+      </label>
+
+      <div class="mt-6 flex items-center justify-between gap-3 text-sm">
+        <a href="/boas-vindas" class="font-bold text-folego-600 hover:text-folego-700">Primeira vez por aqui?</a>
+        <a href="/" class="font-semibold text-slate-500 hover:text-slate-700">Ver o painel</a>
+      </div>
+
+      <p class="mt-8 text-center text-xs leading-relaxed text-slate-400">Seus dados bancários são lidos por conexão Open Finance autorizada. O Fôlego nunca movimenta dinheiro por você.</p>
+    </div>
+  </main>
+</div>
+
+<script>
+  const botao = document.getElementById('biometria');
+  const mensagem = document.getElementById('mensagem');
+  const submensagem = document.getElementById('submensagem');
+  const progresso = document.getElementById('progresso');
+  const alternar = document.getElementById('alternar-senha');
+  const formSenha = document.getElementById('form-senha');
+
+  botao.addEventListener('click', () => {
+    botao.disabled = true;
+    mensagem.textContent = 'Reconhecendo você...';
+    submensagem.textContent = 'Pode manter o dedo no sensor.';
+    progresso.style.width = '55%';
+    setTimeout(() => {
+      progresso.style.width = '100%';
+      mensagem.textContent = 'Tudo certo. Bom te ver.';
+      submensagem.textContent = 'Abrindo o painel do jeito calmo.';
+    }, 900);
+    setTimeout(() => { window.location.href = '/'; }, 1900);
+  });
+
+  alternar.addEventListener('click', () => {
+    const oculto = formSenha.classList.toggle('hidden');
+    alternar.textContent = oculto ? 'Prefiro entrar com e-mail e senha' : 'Voltar para a biometria';
+  });
+
+  formSenha.addEventListener('submit', (evento) => {
+    evento.preventDefault();
+    window.location.href = '/';
+  });
+</script>
+</body>
+</html>

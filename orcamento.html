@@ -1,0 +1,290 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Fôlego · Orçamento</title>
+<meta name="description" content="Orçamento colaborativo 50/30/20 com divisão proporcional à renda de cada pessoa da casa." />
+<meta name="theme-color" content="#f7f9fb" />
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='88'>🌿</text></svg>" />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet" />
+<script src="https://cdn.tailwindcss.com"></script>
+<script>
+  tailwind.config = {
+    theme: {
+      extend: {
+        colors: {
+          sereno: '#f7f9fb',
+          folego: { 50:'#eff6ff',100:'#dbeafe',200:'#bfdbfe',300:'#93c5fd',400:'#60a5fa',500:'#3b82f6',600:'#2563eb',700:'#1d4ed8',800:'#1e40af',900:'#1e3a8a' },
+          menta:  { 50:'#eefaf4',100:'#d5f1e5',300:'#7fd3b1',500:'#3fae86',700:'#27795c' },
+          areia:  { 50:'#fdf7ec',100:'#faedd6',300:'#eccb92',500:'#c9973f',700:'#946a22' }
+        },
+        fontFamily: { sans: ['"Plus Jakarta Sans"','ui-sans-serif','system-ui','sans-serif'] },
+        boxShadow: {
+          suave: '0 1px 2px rgba(15,23,42,.04), 0 14px 34px -22px rgba(15,23,42,.35)',
+          serena: '0 24px 50px -28px rgba(37,99,235,.55)'
+        }
+      }
+    }
+  }
+</script>
+<style type="text/tailwindcss">
+  @layer base {
+    body { @apply bg-sereno font-sans text-slate-600 antialiased; }
+    h1,h2,h3 { @apply text-slate-900; }
+  }
+  @layer components {
+    .card { @apply rounded-3xl border border-white bg-white/80 shadow-suave backdrop-blur; }
+    .nav-link { @apply rounded-full px-3.5 py-2 text-sm font-semibold text-slate-500 transition hover:bg-white hover:text-folego-700; }
+    .nav-on { @apply bg-white text-folego-700 shadow-suave; }
+    .tab { @apply flex flex-1 flex-col items-center gap-1 py-2.5 text-[11px] font-semibold text-slate-400 transition; }
+    .tab-on { @apply text-folego-600; }
+    .pill { @apply inline-flex items-center gap-1.5 rounded-full px-3 py-1 text-xs font-semibold; }
+    .btn { @apply inline-flex items-center justify-center gap-2 rounded-full px-5 py-3 text-sm font-bold transition; }
+    .btn-primary { @apply bg-folego-600 text-white shadow-serena hover:bg-folego-700; }
+    .btn-ghost { @apply border border-slate-200 bg-white text-slate-700 hover:border-folego-200 hover:text-folego-700; }
+    .campo { @apply w-full rounded-2xl border border-slate-200 bg-white py-3 pl-11 pr-4 text-lg font-extrabold text-slate-900 outline-none transition focus:border-folego-400 focus:ring-4 focus:ring-folego-100; }
+    .linha { @apply flex items-center justify-between gap-3 border-t border-slate-100 py-2.5 text-sm first:border-0; }
+  }
+</style>
+</head>
+<body class="min-h-screen pb-24 md:pb-0">
+
+<div aria-hidden="true" class="pointer-events-none fixed inset-0 -z-10 overflow-hidden">
+  <div class="absolute -left-24 -top-32 h-80 w-80 rounded-full bg-folego-100/70 blur-3xl"></div>
+  <div class="absolute right-0 top-1/2 h-96 w-96 rounded-full bg-areia-100/50 blur-3xl"></div>
+</div>
+
+<header class="sticky top-0 z-40 border-b border-white/70 bg-sereno/85 backdrop-blur">
+  <div class="mx-auto flex max-w-6xl items-center justify-between gap-4 px-5 py-3.5">
+    <a href="/" class="flex items-center gap-2.5">
+      <span class="grid h-9 w-9 place-items-center rounded-2xl bg-folego-600 text-white shadow-serena">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" class="h-5 w-5"><path d="M4 14c0-4 3-8 8-9 5 1 8 5 8 9a5 5 0 0 1-8 4 5 5 0 0 1-8-4Z" stroke-linejoin="round"/><path d="M12 5v13" stroke-linecap="round"/></svg>
+      </span>
+      <span class="text-[15px] font-extrabold tracking-tight text-slate-900">Fôlego</span>
+    </a>
+    <nav class="hidden items-center gap-1 md:flex">
+      <a href="/" class="nav-link">Painel</a>
+      <a href="/contas" class="nav-link">Contas</a>
+      <a href="/orcamento" class="nav-link nav-on">Orçamento</a>
+      <a href="/metas" class="nav-link">Metas</a>
+      <a href="/boas-vindas" class="nav-link">Boas-vindas</a>
+    </nav>
+    <a href="/login" class="grid h-9 w-9 place-items-center rounded-full bg-folego-100 text-sm font-extrabold text-folego-700" title="Sua conta">BM</a>
+  </div>
+</header>
+
+<main class="mx-auto max-w-6xl px-5 py-8">
+
+  <section class="mb-8">
+    <span class="pill bg-folego-50 text-folego-700">Orçamento colaborativo</span>
+    <h1 class="mt-3 text-3xl font-extrabold tracking-tight sm:text-4xl">50 / 30 / 20, dividido com justiça.</h1>
+    <p class="mt-2 max-w-2xl text-[15px] leading-relaxed">Metade para o que sustenta a casa, um terço para o que dá gosto à vida, um quinto para o futuro. Quem ganha mais contribui com mais, na mesma proporção da renda.</p>
+  </section>
+
+  <section class="grid gap-5 lg:grid-cols-3">
+    <article class="card p-7 lg:col-span-1">
+      <h2 class="text-lg font-extrabold tracking-tight">Renda da casa</h2>
+      <p class="mt-1.5 text-sm">Ajuste os valores e tudo se recalcula na hora.</p>
+
+      <div class="mt-6 space-y-5">
+        <label class="block">
+          <span class="mb-2 flex items-center gap-2 text-sm font-bold text-slate-700">
+            <span class="grid h-7 w-7 place-items-center rounded-full bg-folego-600 text-[11px] font-bold text-white">B</span> Bruno
+          </span>
+          <span class="relative block">
+            <span class="pointer-events-none absolute left-4 top-1/2 -translate-y-1/2 text-sm font-bold text-slate-400">R$</span>
+            <input id="renda-a" type="number" min="0" step="100" value="6400" class="campo" />
+          </span>
+        </label>
+        <label class="block">
+          <span class="mb-2 flex items-center gap-2 text-sm font-bold text-slate-700">
+            <span class="grid h-7 w-7 place-items-center rounded-full bg-menta-500 text-[11px] font-bold text-white">M</span> Marina
+          </span>
+          <span class="relative block">
+            <span class="pointer-events-none absolute left-4 top-1/2 -translate-y-1/2 text-sm font-bold text-slate-400">R$</span>
+            <input id="renda-b" type="number" min="0" step="100" value="4200" class="campo" />
+          </span>
+        </label>
+      </div>
+
+      <div class="mt-6 rounded-2xl bg-slate-50 p-4">
+        <p class="text-xs font-bold uppercase tracking-wide text-slate-400">Renda total</p>
+        <p id="renda-total" class="mt-1 text-2xl font-extrabold text-slate-900">R$ 10.600</p>
+      </div>
+
+      <div class="mt-4">
+        <p class="text-xs font-bold uppercase tracking-wide text-slate-400">Divisão proporcional</p>
+        <div class="mt-2 flex h-3 overflow-hidden rounded-full bg-slate-200">
+          <div id="barra-a" class="h-full bg-folego-600" style="width:60%"></div>
+          <div id="barra-b" class="h-full bg-menta-500" style="width:40%"></div>
+        </div>
+        <div class="mt-2 flex justify-between text-xs font-bold">
+          <span class="text-folego-700">Bruno <span id="pct-a">60%</span></span>
+          <span class="text-menta-700">Marina <span id="pct-b">40%</span></span>
+        </div>
+        <p class="mt-3 text-sm leading-relaxed">Ninguém entrega a mesma quantia. Cada um entrega o mesmo esforço.</p>
+      </div>
+    </article>
+
+    <div class="grid gap-5 lg:col-span-2">
+
+      <article class="card p-7">
+        <div class="flex flex-wrap items-start justify-between gap-3">
+          <div>
+            <span class="pill bg-folego-50 text-folego-700">50% · Essenciais</span>
+            <h3 class="mt-2.5 text-xl font-extrabold tracking-tight">O que mantém a casa de pé</h3>
+          </div>
+          <div class="text-right">
+            <p id="valor-essenciais" class="text-2xl font-extrabold text-slate-900">R$ 5.300</p>
+            <p class="text-xs font-semibold text-slate-400">no mês</p>
+          </div>
+        </div>
+        <div class="mt-4 h-2.5 overflow-hidden rounded-full bg-slate-100"><div class="h-full w-[92%] rounded-full bg-folego-600"></div></div>
+        <p class="mt-2 text-sm">Usados até agora: 92% do combinado. Ainda cabe.</p>
+        <div class="mt-4 grid gap-x-8 sm:grid-cols-2">
+          <p class="linha"><span>Moradia</span><span class="font-bold text-slate-700">R$ 1.450</span></p>
+          <p class="linha"><span>Mercado</span><span class="font-bold text-slate-700">R$ 1.380</span></p>
+          <p class="linha"><span>Escola</span><span class="font-bold text-slate-700">R$ 1.320</span></p>
+          <p class="linha"><span>Contas fixas</span><span class="font-bold text-slate-700">R$ 725</span></p>
+        </div>
+        <div class="mt-5 flex flex-wrap gap-2 rounded-2xl bg-slate-50 p-3.5 text-xs font-bold">
+          <span class="pill bg-white text-folego-700">Bruno paga <span id="parte-a-essenciais">R$ 3.200</span></span>
+          <span class="pill bg-white text-menta-700">Marina paga <span id="parte-b-essenciais">R$ 2.100</span></span>
+        </div>
+      </article>
+
+      <article class="card p-7">
+        <div class="flex flex-wrap items-start justify-between gap-3">
+          <div>
+            <span class="pill bg-areia-100 text-areia-700">30% · Escolhas</span>
+            <h3 class="mt-2.5 text-xl font-extrabold tracking-tight">O que dá gosto à vida</h3>
+          </div>
+          <div class="text-right">
+            <p id="valor-escolhas" class="text-2xl font-extrabold text-slate-900">R$ 3.180</p>
+            <p class="text-xs font-semibold text-slate-400">no mês</p>
+          </div>
+        </div>
+        <div class="mt-4 h-2.5 overflow-hidden rounded-full bg-slate-100"><div class="h-full w-[64%] rounded-full bg-areia-500"></div></div>
+        <p class="mt-2 text-sm">Usados até agora: 64%. Sobrou espaço para o fim de semana.</p>
+        <div class="mt-4 grid gap-x-8 sm:grid-cols-2">
+          <p class="linha"><span>Restaurantes</span><span class="font-bold text-slate-700">R$ 620</span></p>
+          <p class="linha"><span>Lazer das crianças</span><span class="font-bold text-slate-700">R$ 480</span></p>
+          <p class="linha"><span>Assinaturas</span><span class="font-bold text-slate-700">R$ 210</span></p>
+          <p class="linha"><span>Cuidado pessoal</span><span class="font-bold text-slate-700">R$ 730</span></p>
+        </div>
+        <div class="mt-5 flex flex-wrap gap-2 rounded-2xl bg-slate-50 p-3.5 text-xs font-bold">
+          <span class="pill bg-white text-folego-700">Bruno paga <span id="parte-a-escolhas">R$ 1.920</span></span>
+          <span class="pill bg-white text-menta-700">Marina paga <span id="parte-b-escolhas">R$ 1.260</span></span>
+        </div>
+      </article>
+
+      <article class="card p-7">
+        <div class="flex flex-wrap items-start justify-between gap-3">
+          <div>
+            <span class="pill bg-menta-100 text-menta-700">20% · Futuro</span>
+            <h3 class="mt-2.5 text-xl font-extrabold tracking-tight">O que compra tranquilidade</h3>
+          </div>
+          <div class="text-right">
+            <p id="valor-futuro" class="text-2xl font-extrabold text-slate-900">R$ 2.120</p>
+            <p class="text-xs font-semibold text-slate-400">no mês</p>
+          </div>
+        </div>
+        <div class="mt-4 h-2.5 overflow-hidden rounded-full bg-slate-100"><div class="h-full w-full rounded-full bg-menta-500"></div></div>
+        <p class="mt-2 text-sm">Guardado automaticamente no dia do salário. Vira mais dias de fôlego.</p>
+        <div class="mt-4 grid gap-x-8 sm:grid-cols-2">
+          <p class="linha"><span>Reserva de emergência</span><span class="font-bold text-slate-700">R$ 1.100</span></p>
+          <p class="linha"><span>Entrada da casa</span><span class="font-bold text-slate-700">R$ 620</span></p>
+          <p class="linha"><span>Férias em família</span><span class="font-bold text-slate-700">R$ 400</span></p>
+          <p class="linha"><a href="/metas" class="font-bold text-folego-600 hover:text-folego-700">Ver o mural de sonhos</a></p>
+        </div>
+        <div class="mt-5 flex flex-wrap gap-2 rounded-2xl bg-slate-50 p-3.5 text-xs font-bold">
+          <span class="pill bg-white text-folego-700">Bruno guarda <span id="parte-a-futuro">R$ 1.280</span></span>
+          <span class="pill bg-white text-menta-700">Marina guarda <span id="parte-b-futuro">R$ 840</span></span>
+        </div>
+      </article>
+    </div>
+  </section>
+
+  <section class="mt-10 grid gap-5 lg:grid-cols-2">
+    <article class="card p-7">
+      <h2 class="text-xl font-extrabold tracking-tight">Acordos da casa</h2>
+      <p class="mt-1.5 text-sm">Combinados no ritual de domingo. Podem mudar quando os dois quiserem.</p>
+      <ul class="mt-5 space-y-3 text-sm">
+        <li class="flex items-start gap-3 rounded-2xl border border-slate-100 p-4"><span class="text-lg">🤝</span><span><strong class="block font-bold text-slate-900">Acima de R$ 300, a gente conversa</strong>Nada de vetar. Só de decidir junto.</span></li>
+        <li class="flex items-start gap-3 rounded-2xl border border-slate-100 p-4"><span class="text-lg">🫙</span><span><strong class="block font-bold text-slate-900">Cada um tem R$ 400 sem prestar contas</strong>Liberdade também faz parte do orçamento.</span></li>
+        <li class="flex items-start gap-3 rounded-2xl border border-slate-100 p-4"><span class="text-lg">🌙</span><span><strong class="block font-bold text-slate-900">Nada de finanças depois das 22h</strong>Decisão cansada custa caro.</span></li>
+      </ul>
+    </article>
+
+    <article class="card flex flex-col justify-between p-7">
+      <div>
+        <h2 class="text-xl font-extrabold tracking-tight">O efeito nos seus dias</h2>
+        <p class="mt-1.5 text-sm">Manter os 20% do futuro por mais três meses muda o número que importa.</p>
+        <div class="mt-6 flex items-end gap-6">
+          <div>
+            <p class="text-xs font-bold uppercase tracking-wide text-slate-400">Hoje</p>
+            <p class="text-4xl font-extrabold text-slate-900">47</p>
+            <p class="text-xs font-semibold text-slate-400">dias</p>
+          </div>
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="mb-6 h-5 w-5 text-slate-300"><path d="M5 12h14m-6-6 6 6-6 6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          <div>
+            <p class="text-xs font-bold uppercase tracking-wide text-folego-600">Em dezembro</p>
+            <p class="text-4xl font-extrabold text-folego-600">63</p>
+            <p class="text-xs font-semibold text-slate-400">dias</p>
+          </div>
+        </div>
+      </div>
+      <a href="/metas" class="btn btn-primary mt-7">Escolher onde esse dinheiro vai</a>
+    </article>
+  </section>
+
+  <footer class="mt-14 border-t border-slate-200/70 pt-6 text-center text-xs text-slate-400">
+    Fôlego · Finanças Serenas — números para dormir tranquilo, não para se assustar.
+  </footer>
+</main>
+
+<nav class="fixed inset-x-0 bottom-0 z-40 border-t border-slate-200 bg-white/95 pb-[env(safe-area-inset-bottom)] backdrop-blur md:hidden">
+  <div class="mx-auto flex max-w-md">
+    <a href="/" class="tab"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" class="h-5 w-5"><path d="M4 10.5 12 4l8 6.5V20a1 1 0 0 1-1 1h-4v-6H9v6H5a1 1 0 0 1-1-1Z" stroke-linejoin="round"/></svg>Painel</a>
+    <a href="/contas" class="tab"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" class="h-5 w-5"><rect x="3" y="6" width="18" height="13" rx="2.5"/><path d="M3 10h18" stroke-linecap="round"/></svg>Contas</a>
+    <a href="/orcamento" class="tab tab-on"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" class="h-5 w-5"><path d="M12 3a9 9 0 1 0 9 9h-9Z" stroke-linejoin="round"/><path d="M14 3.4A9 9 0 0 1 20.6 10H14Z" stroke-linejoin="round"/></svg>Orçamento</a>
+    <a href="/metas" class="tab"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" class="h-5 w-5"><circle cx="12" cy="12" r="8"/><circle cx="12" cy="12" r="3.4"/></svg>Metas</a>
+  </div>
+</nav>
+
+<script>
+  const moeda = new Intl.NumberFormat('pt-BR', { style: 'currency', currency: 'BRL', maximumFractionDigits: 0 });
+  const rendaA = document.getElementById('renda-a');
+  const rendaB = document.getElementById('renda-b');
+  const escrever = (id, valor) => { document.getElementById(id).textContent = moeda.format(valor); };
+
+  const recalcular = () => {
+    const a = Math.max(0, Number(rendaA.value) || 0);
+    const b = Math.max(0, Number(rendaB.value) || 0);
+    const total = a + b;
+    const fracaoA = total > 0 ? a / total : 0.5;
+    const fracaoB = 1 - fracaoA;
+
+    escrever('renda-total', total);
+    document.getElementById('pct-a').textContent = Math.round(fracaoA * 100) + '%';
+    document.getElementById('pct-b').textContent = Math.round(fracaoB * 100) + '%';
+    document.getElementById('barra-a').style.width = fracaoA * 100 + '%';
+    document.getElementById('barra-b').style.width = fracaoB * 100 + '%';
+
+    const blocos = { essenciais: 0.5, escolhas: 0.3, futuro: 0.2 };
+    Object.entries(blocos).forEach(([nome, fatia]) => {
+      const valor = total * fatia;
+      escrever('valor-' + nome, valor);
+      escrever('parte-a-' + nome, valor * fracaoA);
+      escrever('parte-b-' + nome, valor * fracaoB);
+    });
+  };
+
+  [rendaA, rendaB].forEach((campo) => campo.addEventListener('input', recalcular));
+  recalcular();
+</script>
+</body>
+</html>
