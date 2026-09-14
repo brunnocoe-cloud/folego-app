@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Fôlego — clareza financeira para decisões familiares mais serenas.">
+  <title>Visão Geral | Fôlego — Finanças Serenas</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='18' fill='%232563eb'/%3E%3Cpath d='M15 35c8-16 18 16 34-8M15 43c10-11 21 9 34-4' fill='none' stroke='white' stroke-width='5' stroke-linecap='round'/%3E%3C/svg%3E">
+  <link rel="stylesheet" href="assets/styles.css">
+</head>
+<body>
+  <aside class="app-sidebar" aria-label="Navegação principal">
+    <a href="index.html" class="flex items-center gap-3 text-white no-underline">
+      <span class="brand-mark" aria-hidden="true"><svg viewBox="0 0 32 32" width="25" height="25" fill="none"><path d="M4 17c5-9 10 8 24-5M5 23c7-6 13 6 22-2" stroke="currentColor" stroke-width="3" stroke-linecap="round"/></svg></span>
+      <span><strong class="block text-lg tracking-tight">Fôlego</strong><span class="text-xs text-blue-200">Finanças Serenas</span></span>
+    </a>
+    <nav class="side-nav">
+      <a class="side-link active" href="index.html" aria-current="page"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M4 13h6V4H4v9Zm0 7h6v-4H4v4Zm10 0h6v-9h-6v9Zm0-16v4h6V4h-6Z"/></svg>Visão Geral</a>
+      <a class="side-link" href="contas.html"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="3" y="6" width="18" height="13" rx="2"/><path d="M16 13h3M7 6V4h10v2"/></svg>Contas &amp; Transações</a>
+      <a class="side-link" href="orcamento.html"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M4 19V9m5 10V5m6 14v-7m5 7V3"/></svg>Orçamento Familiar</a>
+      <a class="side-link" href="metas.html"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="12" cy="12" r="8"/><circle cx="12" cy="12" r="3"/><path d="m15 9 5-5"/></svg>Metas &amp; Reserva</a>
+    </nav>
+    <div class="breath-widget">
+      <div class="flex items-center justify-between"><span class="text-xs font-bold uppercase tracking-widest text-blue-200">Fôlego calculado</span><span class="status-dot"></span></div>
+      <p class="mt-3 text-3xl font-extrabold text-white">38 dias</p>
+      <p class="mt-1 text-sm leading-6 text-blue-100">Despesas essenciais cobertas até o fim do mês.</p>
+    </div>
+    <div class="mt-4 flex items-center gap-3 border-t border-white/10 pt-4">
+      <span class="grid h-10 w-10 place-items-center rounded-full bg-blue-400/20 font-bold">FS</span>
+      <span><strong class="block text-sm text-white">Família Silva</strong><span class="text-xs text-blue-200">Plano Familiar</span></span>
+    </div>
+  </aside>
+
+  <main class="app-main">
+    <header class="topbar">
+      <div class="flex items-center gap-3">
+        <button class="mobile-menu" data-menu aria-label="Abrir menu" aria-expanded="false"><svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 7h16M4 12h16M4 17h16"/></svg></button>
+        <label class="hide-mobile text-sm font-semibold text-slate-500" for="family-view">Visão</label>
+        <select id="family-view" class="field !w-auto !py-2 text-sm font-semibold"><option>Toda a Família</option><option>Ana</option><option>Lucas</option></select>
+      </div>
+      <div class="flex items-center gap-3">
+        <span class="pill pill-green hide-mobile"><span class="status-dot"></span>Status: Fôlego Saudável</span>
+        <button class="btn-primary !py-2.5" data-open-transaction><span class="text-lg">＋</span><span class="hide-mobile">Nova Transação</span></button>
+      </div>
+    </header>
+
+    <div class="page-content">
+      <section class="mb-6 flex flex-col gap-2 lg:flex-row lg:items-end lg:justify-between">
+        <div>
+          <p class="eyebrow text-blue-600">Domingo, 20 de outubro</p>
+          <h1 class="mt-2 text-3xl font-extrabold tracking-tight md:text-4xl">Bom dia, Família Silva.</h1>
+          <p class="mt-2 text-base text-slate-600">Suas contas fluem com serenidade. Nenhuma pendência urgente para hoje.</p>
+        </div>
+        <p class="text-sm font-semibold text-emerald-700">Tudo essencial está coberto ✓</p>
+      </section>
+
+      <section class="wave-bg mb-6 overflow-hidden rounded-[1.6rem] bg-gradient-to-br from-[#12315e] to-[#2563eb] p-6 text-white md:p-8">
+        <div class="relative z-10 max-w-4xl">
+          <p class="eyebrow text-blue-200">Filosofia Fôlego · um respiro de paz</p>
+          <blockquote class="serif mt-4 text-2xl leading-tight md:text-4xl">“Olhe para o futuro, cuide com carinho do presente e liberte-se da culpa pelo passado.”</blockquote>
+          <p class="mt-4 max-w-2xl text-sm leading-6 text-blue-100 md:text-base">O que ficou para trás não volta, mas o seu amanhã se constrói com as escolhas de hoje.</p>
+        </div>
+      </section>
+
+      <section class="card mb-6 p-5 md:p-7">
+        <div class="grid gap-7 xl:grid-cols-[1.45fr_.75fr]">
+          <div>
+            <div class="flex flex-wrap items-end gap-3">
+              <span class="text-6xl font-extrabold tracking-[-.06em] text-blue-600 md:text-8xl">68</span>
+              <span class="mb-2 text-2xl font-bold text-slate-700">dias</span>
+              <span class="pill pill-green mb-3">Zona de Alta Serenidade</span>
+            </div>
+            <p class="mt-2 max-w-2xl text-slate-600">Este é o tempo em que sua família seguiria tranquila mantendo as despesas essenciais, mesmo sem novas entradas.</p>
+            <div class="mt-8">
+              <div class="relative h-3 rounded-full bg-slate-100">
+                <div class="h-full w-[76%] rounded-full bg-gradient-to-r from-blue-500 via-blue-500 to-emerald-400"></div>
+                <span class="absolute left-[33%] top-1/2 h-5 w-1 -translate-y-1/2 rounded bg-white shadow"></span>
+                <span class="absolute left-[76%] top-1/2 h-6 w-6 -translate-x-1/2 -translate-y-1/2 rounded-full border-4 border-white bg-blue-600 shadow-lg"></span>
+              </div>
+              <div class="mt-3 flex justify-between text-xs font-bold text-slate-500"><span>30d · Mínimo</span><span class="text-blue-700">68d · Hoje, tranquilo</span><span>90d · Fôlego pleno</span></div>
+            </div>
+          </div>
+          <div class="grid gap-3 sm:grid-cols-2 xl:grid-cols-1">
+            <article class="soft-card p-4"><div class="flex items-center justify-between"><span class="eyebrow text-slate-500">Custo diário da casa</span><span class="pill pill-green">−4%</span></div><strong class="mt-3 block text-2xl">R$ 142,50<span class="text-sm font-medium text-slate-500">/dia</span></strong><p class="mt-1 text-sm text-slate-500">Menor que no mês anterior.</p></article>
+            <article class="soft-card p-4"><div class="flex items-center justify-between"><span class="eyebrow text-slate-500">Meta anual familiar</span><span class="pill pill-blue">Nov</span></div><strong class="mt-3 block text-2xl">90 Dias de Paz</strong><p class="mt-1 text-sm text-slate-500">Atingível mantendo o ritmo atual.</p></article>
+          </div>
+        </div>
+      </section>
+
+      <section class="grid-metrics mb-6" aria-label="Resumo financeiro">
+        <article class="soft-card metric-card"><div class="flex items-start justify-between"><span class="eyebrow text-slate-500">Saldo livre imediato</span><span class="icon-box">↗</span></div><div><p class="metric-number">R$ 12.580,00</p><p class="mt-2 text-sm text-emerald-700">Livre após compromissos do mês</p></div></article>
+        <article class="soft-card metric-card"><div class="flex items-start justify-between"><span class="eyebrow text-slate-500">Despesas de outubro</span><span class="icon-box">◔</span></div><div><p class="metric-number">R$ 3.420,00</p><div class="mt-3 progress-track"><div class="progress-fill" style="width:59%"></div></div><p class="mt-2 text-sm text-slate-500">59% do teto · <b class="text-emerald-700">Sob controle</b></p></div></article>
+        <article class="soft-card metric-card"><div class="flex items-start justify-between"><span class="eyebrow text-slate-500">Entradas confirmadas</span><span class="icon-box">＋</span></div><div><p class="metric-number">R$ 8.200,00</p><p class="mt-2 text-sm text-blue-700">+ R$ 1.700 em 25/10</p></div></article>
+        <article class="soft-card metric-card"><div class="flex items-start justify-between"><span class="eyebrow text-slate-500">Reserva &amp; sonhos</span><span class="icon-box">◎</span></div><div><p class="metric-number">R$ 51.550,00</p><p class="mt-2 text-sm text-emerald-700">Rendendo 102% do CDI</p></div></article>
+      </section>
+
+      <div class="grid gap-6 xl:grid-cols-[1.1fr_.9fr]">
+        <section class="card p-5 md:p-6">
+          <div class="mb-5 flex items-center justify-between"><div><p class="eyebrow text-blue-600">Mural afetivo</p><h2 class="mt-1 text-xl font-extrabold">Próximos sonhos da família</h2></div><a href="metas.html" class="text-sm font-bold text-blue-700">Ver mural →</a></div>
+          <div class="grid gap-4 md:grid-cols-2">
+            <article class="soft-card overflow-hidden"><img src="assets/jantar-casal.png" alt="Jantar aconchegante para duas pessoas" class="h-32 w-full object-cover"><div class="p-4"><span class="pill pill-blue">Curto prazo</span><h3 class="mt-3 font-extrabold">Jantar Especial de Casal</h3><p class="mt-1 text-sm text-slate-500">R$ 850 de R$ 1.000 · faltam R$ 150</p><div class="mt-3 progress-track"><div class="progress-fill" style="width:85%"></div></div></div></article>
+            <article class="soft-card overflow-hidden"><img src="assets/viagem-praia.png" alt="Família caminhando em uma praia tropical" class="h-32 w-full object-cover"><div class="p-4"><span class="pill pill-green">70% completo</span><h3 class="mt-3 font-extrabold">Viagem de Verão em Família</h3><p class="mt-1 text-sm text-slate-500">R$ 8.500 de R$ 12.000</p><div class="mt-3 progress-track"><div class="progress-fill" style="width:70%"></div></div></div></article>
+          </div>
+        </section>
+
+        <section class="card p-5 md:p-6">
+          <div class="flex items-start justify-between"><div><p class="eyebrow text-blue-600">Próximos 30 dias</p><h2 class="mt-1 text-xl font-extrabold">Previsibilidade do caixa</h2></div><span class="pill pill-green">Faturas provisionadas</span></div>
+          <svg class="mt-6 h-40 w-full" viewBox="0 0 500 180" role="img" aria-label="Linha de saldo projetado para os próximos 30 dias">
+            <defs><linearGradient id="area" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#2563eb" stop-opacity=".24"/><stop offset="1" stop-color="#2563eb" stop-opacity="0"/></linearGradient></defs>
+            <path d="M15 150H485M15 100H485M15 50H485" stroke="#e7edf5" stroke-dasharray="4 7"/>
+            <path d="M15 69C65 68 80 84 122 86S190 58 230 76s63 57 106 43 77-50 149-46V165H15Z" fill="url(#area)"/>
+            <path d="M15 69C65 68 80 84 122 86S190 58 230 76s63 57 106 43 77-50 149-46" fill="none" stroke="#2563eb" stroke-width="4" stroke-linecap="round"/>
+            <circle cx="336" cy="119" r="6" fill="#10b981" stroke="white" stroke-width="3"/>
+          </svg>
+          <div class="mt-3 flex items-end justify-between"><div><span class="text-sm text-slate-500">Folga residual mínima</span><strong class="mt-1 block text-2xl">R$ 7.320,00</strong></div><span class="text-xs font-bold text-slate-400">Hoje → 30 dias</span></div>
+        </section>
+      </div>
+
+      <section class="mt-6 flex flex-col gap-5 rounded-[1.35rem] border border-blue-100 bg-blue-50 p-5 md:flex-row md:items-center md:justify-between md:p-6">
+        <div class="flex gap-4"><span class="icon-box bg-white">☕</span><div><p class="eyebrow text-blue-600">Ritual semanal familiar</p><h2 class="mt-1 text-lg font-extrabold">Próxima Conversa do Fôlego: Domingo às 19:00</h2><p class="mt-1 text-sm text-slate-600">Um café gostoso para alinhar os sonhos sem cobrança.</p></div></div>
+        <button class="btn-secondary whitespace-nowrap" onclick="showToast('Lembrete do ritual salvo para domingo, às 19h.')">Lembrar no domingo</button>
+      </section>
+    </div>
+  </main>
+
+  <div id="transaction-modal" class="modal-backdrop" role="dialog" aria-modal="true" aria-labelledby="transaction-title">
+    <div class="modal-panel">
+      <div class="flex items-center justify-between"><div><p class="eyebrow text-blue-600">Registro leve</p><h2 id="transaction-title" class="mt-1 text-2xl font-extrabold">Nova transação</h2></div><button data-close-modal class="grid h-10 w-10 place-items-center rounded-full bg-slate-100" aria-label="Fechar">×</button></div>
+      <form class="mt-6 grid gap-4">
+        <label class="text-sm font-bold">Descrição<input name="descricao" class="field mt-2" required placeholder="Ex.: Feira da semana"></label>
+        <div class="grid gap-4 sm:grid-cols-2"><label class="text-sm font-bold">Valor<input name="valor" class="field mt-2" required inputmode="decimal" placeholder="R$ 0,00"></label><label class="text-sm font-bold">Tipo<select name="tipo" class="field mt-2"><option>Despesa</option><option>Receita</option><option>Transferência</option></select></label></div>
+        <div class="mt-2 flex justify-end gap-3"><button type="button" data-close-modal class="btn-secondary">Agora não</button><button class="btn-primary" type="submit">Registrar</button></div>
+      </form>
+    </div>
+  </div>
+  <script src="assets/app.js"></script>
+</body>
+</html>

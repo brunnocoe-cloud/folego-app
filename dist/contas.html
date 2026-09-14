@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Contas, faturas e extrato familiar reunidos com clareza.">
+  <title>Contas &amp; Transações | Fôlego</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='18' fill='%232563eb'/%3E%3Cpath d='M15 35c8-16 18 16 34-8M15 43c10-11 21 9 34-4' fill='none' stroke='white' stroke-width='5' stroke-linecap='round'/%3E%3C/svg%3E">
+  <link rel="stylesheet" href="assets/styles.css">
+</head>
+<body>
+  <aside class="app-sidebar" aria-label="Navegação principal">
+    <a href="index.html" class="flex items-center gap-3 text-white no-underline"><span class="brand-mark"><svg viewBox="0 0 32 32" width="25" height="25" fill="none"><path d="M4 17c5-9 10 8 24-5M5 23c7-6 13 6 22-2" stroke="currentColor" stroke-width="3" stroke-linecap="round"/></svg></span><span><strong class="block text-lg">Fôlego</strong><span class="text-xs text-blue-200">Finanças Serenas</span></span></a>
+    <nav class="side-nav">
+      <a class="side-link" href="index.html"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M4 13h6V4H4v9Zm0 7h6v-4H4v4Zm10 0h6v-9h-6v9Zm0-16v4h6V4h-6Z"/></svg>Visão Geral</a>
+      <a class="side-link active" href="contas.html" aria-current="page"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="3" y="6" width="18" height="13" rx="2"/><path d="M16 13h3M7 6V4h10v2"/></svg>Contas &amp; Transações</a>
+      <a class="side-link" href="orcamento.html"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M4 19V9m5 10V5m6 14v-7m5 7V3"/></svg>Orçamento Familiar</a>
+      <a class="side-link" href="metas.html"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="12" cy="12" r="8"/><circle cx="12" cy="12" r="3"/><path d="m15 9 5-5"/></svg>Metas &amp; Reserva</a>
+    </nav>
+    <div class="breath-widget"><div class="flex items-center justify-between"><span class="text-xs font-bold uppercase tracking-widest text-blue-200">Fôlego calculado</span><span class="status-dot"></span></div><p class="mt-3 text-3xl font-extrabold text-white">38 dias</p><p class="mt-1 text-sm leading-6 text-blue-100">Despesas essenciais cobertas até o fim do mês.</p></div>
+    <div class="mt-4 flex items-center gap-3 border-t border-white/10 pt-4"><span class="grid h-10 w-10 place-items-center rounded-full bg-blue-400/20 font-bold">FS</span><span><strong class="block text-sm text-white">Família Silva</strong><span class="text-xs text-blue-200">Plano Familiar</span></span></div>
+  </aside>
+  <main class="app-main">
+    <header class="topbar"><div class="flex items-center gap-3"><button class="mobile-menu" data-menu aria-label="Abrir menu" aria-expanded="false"><svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 7h16M4 12h16M4 17h16"/></svg></button><div><p class="text-xs font-bold uppercase tracking-widest text-slate-400">Seu ecossistema</p><h1 class="font-extrabold">Contas &amp; Transações</h1></div></div><div class="flex items-center gap-3"><span class="pill pill-green hide-mobile"><span class="status-dot"></span>Open Finance sincronizado</span><button class="btn-primary !py-2.5" data-open-transaction>＋ <span class="hide-mobile">Nova Transação</span></button></div></header>
+    <div class="page-content">
+      <section class="wave-bg mb-6 rounded-[1.5rem] bg-gradient-to-r from-[#12315e] to-[#2563eb] p-6 text-white md:p-8">
+        <div class="relative z-10 flex flex-col gap-6 lg:flex-row lg:items-center lg:justify-between"><div><p class="eyebrow text-blue-200">Previsão de faturas</p><div class="mt-3 flex items-end gap-3"><strong class="text-4xl font-extrabold md:text-6xl">R$ 5.420</strong><span class="pill mb-2 bg-white/15 text-white">100% cobertas</span></div><p class="mt-3 text-blue-100">Seu fôlego se mantém seguro em 32 dias pós-pagamento.</p></div><div class="rounded-2xl border border-white/15 bg-white/10 p-4"><p class="text-sm text-blue-100">Próximo fechamento</p><strong class="mt-1 block text-xl">28 de outubro</strong><p class="mt-2 text-sm text-emerald-200">Nenhuma ação urgente</p></div></div>
+      </section>
+
+      <section>
+        <div class="mb-4 flex items-end justify-between"><div><p class="eyebrow text-blue-600">Open Finance</p><h2 class="mt-1 text-2xl font-extrabold">Instituições conectadas</h2></div><button class="btn-secondary !py-2.5" onclick="showToast('Fluxo para conectar nova instituição iniciado.')">＋ Conectar conta</button></div>
+        <div class="grid gap-4 lg:grid-cols-2 2xl:grid-cols-4">
+          <article class="card p-5"><div class="flex items-start justify-between"><span class="grid h-12 w-12 place-items-center rounded-xl bg-violet-100 text-lg font-extrabold text-violet-700">nu</span><span class="pill pill-green">Em Paz</span></div><h3 class="mt-5 font-extrabold">Nubank</h3><p class="text-sm text-slate-500">Corrente · Ana &amp; Lucas</p><strong class="mt-5 block text-2xl">R$ 8.940,30</strong><div class="mt-4 flex justify-between border-t border-slate-100 pt-4 text-sm"><span class="text-slate-500">Fatura</span><b>R$ 4.280,00</b></div></article>
+          <article class="card p-5"><div class="flex items-start justify-between"><span class="grid h-12 w-12 place-items-center rounded-xl bg-orange-100 font-extrabold text-orange-700">itaú</span><span class="pill pill-blue">Reserva</span></div><h3 class="mt-5 font-extrabold">Itaú Personnalité</h3><p class="text-sm text-slate-500">Reserva Estratégica</p><strong class="mt-5 block text-2xl">R$ 45.180,00</strong><p class="mt-4 border-t border-slate-100 pt-4 text-sm font-semibold text-emerald-700">Equivale a 6,4 meses cobertos</p></article>
+          <article class="card p-5"><div class="flex items-start justify-between"><span class="grid h-12 w-12 place-items-center rounded-xl bg-orange-50 font-extrabold text-orange-600">inter</span><span class="pill pill-green">84%</span></div><h3 class="mt-5 font-extrabold">Banco Inter</h3><p class="text-sm text-slate-500">Investimentos &amp; Sonhos</p><strong class="mt-5 block text-2xl">R$ 28.650,45</strong><div class="mt-4 progress-track"><div class="progress-fill" style="width:84%"></div></div><p class="mt-2 text-sm text-slate-500">Viagem 84%</p></article>
+          <article class="card p-5"><div class="flex items-start justify-between"><span class="grid h-12 w-12 place-items-center rounded-xl bg-emerald-50 text-xl text-emerald-700">◈</span><span class="pill pill-slate">Manual</span></div><h3 class="mt-5 font-extrabold">Carteira Física</h3><p class="text-sm text-slate-500">Dinheiro</p><strong class="mt-5 block text-2xl">R$ 540,00</strong><button class="mt-4 text-sm font-bold text-blue-700" onclick="showToast('Saldo manual revisado há 2 dias.')">Revisar registro →</button></article>
+        </div>
+      </section>
+
+      <section class="my-6 flex flex-col gap-4 rounded-[1.35rem] border border-emerald-100 bg-emerald-50 p-5 md:flex-row md:items-center md:justify-between"><div class="flex gap-4"><span class="icon-box !bg-white !text-emerald-700"><svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2"><path d="m12 3 8 4v5c0 5-3.5 8-8 9-4.5-1-8-4-8-9V7l8-4Z"/><path d="m9 12 2 2 4-5"/></svg></span><div><p class="eyebrow text-emerald-700">Faturas provisionadas &amp; serenidade de caixa</p><p class="mt-1 max-w-3xl font-semibold leading-7 text-slate-700">Seus próximos 20 dias estão 100% resguardados sem necessidade de tocar na reserva de emergência.</p></div></div><span class="pill pill-green whitespace-nowrap">Proteção ativa</span></section>
+
+      <section class="card overflow-hidden">
+        <div class="flex flex-col gap-4 border-b border-slate-200 p-5 md:flex-row md:items-center md:justify-between md:p-6"><div><p class="eyebrow text-blue-600">Movimentos recentes</p><h2 class="mt-1 text-2xl font-extrabold">Extrato Integrado Familiar</h2></div><select id="kind-filter" class="field !w-auto !py-2.5 text-sm font-bold"><option>Todos</option><option>Despesas</option><option>Receitas</option><option>Transferências</option></select></div>
+        <div class="flex gap-1 overflow-x-auto border-b border-slate-200 px-5 py-3" data-tabs role="tablist"><button class="tab-btn active" data-tab="Todos">Todos</button><button class="tab-btn" data-tab="Ana">Ana</button><button class="tab-btn" data-tab="Lucas">Lucas</button><button class="tab-btn" data-tab="Compartilhado">Compartilhado</button></div>
+        <div class="table-wrap"><table class="data-table"><thead><tr><th>Movimento</th><th>Quem</th><th>Data</th><th>Categoria</th><th class="text-right">Valor</th></tr></thead><tbody>
+          <tr data-owner="Compartilhado" data-kind="Despesas"><td><b>Supermercado Orgânico</b><span class="block text-xs text-slate-400">Nubank</span></td><td><span class="pill pill-slate">Compartilhado</span></td><td>20 out</td><td>Casa</td><td class="text-right font-bold text-slate-800">− R$ 286,40</td></tr>
+          <tr data-owner="Lucas" data-kind="Receitas"><td><b>Salário Líquido Tech Corp</b><span class="block text-xs text-slate-400">Nubank</span></td><td><span class="pill pill-blue">Lucas</span></td><td>18 out</td><td>Receita</td><td class="text-right font-bold text-emerald-700">+ R$ 9.800,00</td></tr>
+          <tr data-owner="Compartilhado" data-kind="Transferências"><td><b>Aporte na Reserva de Tranquilidade</b><span class="block text-xs text-slate-400">Itaú</span></td><td><span class="pill pill-slate">Compartilhado</span></td><td>17 out</td><td>Reserva</td><td class="text-right font-bold text-blue-700">R$ 1.500,00</td></tr>
+          <tr data-owner="Ana" data-kind="Despesas"><td><b>Colégio Harmonia</b><span class="block text-xs text-slate-400">Nubank</span></td><td><span class="pill pill-green">Ana</span></td><td>15 out</td><td>Educação</td><td class="text-right font-bold">− R$ 1.850,00</td></tr>
+          <tr data-owner="Lucas" data-kind="Despesas"><td><b>Posto Ipiranga</b><span class="block text-xs text-slate-400">Banco Inter</span></td><td><span class="pill pill-blue">Lucas</span></td><td>14 out</td><td>Transporte</td><td class="text-right font-bold">− R$ 265,00</td></tr>
+          <tr data-owner="Ana" data-kind="Despesas"><td><b>Droga Raia</b><span class="block text-xs text-slate-400">Nubank</span></td><td><span class="pill pill-green">Ana</span></td><td>13 out</td><td>Saúde</td><td class="text-right font-bold">− R$ 94,00</td></tr>
+        </tbody></table></div>
+      </section>
+    </div>
+  </main>
+  <div id="transaction-modal" class="modal-backdrop" role="dialog" aria-modal="true" aria-labelledby="transaction-title"><div class="modal-panel"><div class="flex items-center justify-between"><div><p class="eyebrow text-blue-600">Registro leve</p><h2 id="transaction-title" class="mt-1 text-2xl font-extrabold">Nova transação</h2></div><button data-close-modal class="grid h-10 w-10 place-items-center rounded-full bg-slate-100" aria-label="Fechar">×</button></div><form class="mt-6 grid gap-4"><label class="text-sm font-bold">Descrição<input name="descricao" class="field mt-2" required placeholder="Ex.: Feira da semana"></label><div class="grid gap-4 sm:grid-cols-2"><label class="text-sm font-bold">Valor<input name="valor" class="field mt-2" required placeholder="R$ 0,00"></label><label class="text-sm font-bold">Tipo<select name="tipo" class="field mt-2"><option>Despesa</option><option>Receita</option><option>Transferência</option></select></label></div><div class="mt-2 flex justify-end gap-3"><button type="button" data-close-modal class="btn-secondary">Agora não</button><button class="btn-primary" type="submit">Registrar</button></div></form></div></div>
+  <script src="assets/app.js"></script>
+</body>
+</html>
