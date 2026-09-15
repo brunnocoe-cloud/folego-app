@@ -43,7 +43,27 @@ function setupSidebar() {
 }
 
 function setupModal() {
-  const modal = qs('#transaction-modal');
+  let modal = qs('#transaction-modal');
+  if (!modal && qs('[data-open-transaction]')) {
+    document.body.insertAdjacentHTML('beforeend', `
+      <div id="transaction-modal" class="modal-backdrop" role="dialog" aria-modal="true" aria-labelledby="transaction-title">
+        <div class="modal-panel">
+          <div class="flex items-center justify-between">
+            <div><p class="eyebrow text-blue-600">Registro leve</p><h2 id="transaction-title" class="mt-1 text-2xl font-extrabold">Nova transação</h2></div>
+            <button data-close-modal class="grid h-10 w-10 place-items-center rounded-full bg-slate-100" aria-label="Fechar">×</button>
+          </div>
+          <form class="mt-6 grid gap-4">
+            <label class="text-sm font-bold">Descrição<input name="descricao" class="field mt-2" required placeholder="Ex.: Feira da semana"></label>
+            <div class="grid gap-4 sm:grid-cols-2">
+              <label class="text-sm font-bold">Valor<input name="valor" class="field mt-2" required inputmode="decimal" placeholder="R$ 0,00"></label>
+              <label class="text-sm font-bold">Tipo<select name="tipo" class="field mt-2"><option>Despesa</option><option>Receita</option><option>Transferência</option></select></label>
+            </div>
+            <div class="mt-2 flex justify-end gap-3"><button type="button" data-close-modal class="btn-secondary">Agora não</button><button class="btn-primary" type="submit">Registrar</button></div>
+          </form>
+        </div>
+      </div>`);
+    modal = qs('#transaction-modal');
+  }
   if (!modal) return;
   qsa('[data-open-transaction]').forEach(button => button.addEventListener('click', () => {
     modal.classList.add('open');
@@ -59,6 +79,35 @@ function setupModal() {
     modal.classList.remove('open');
     event.currentTarget.reset();
   });
+}
+
+function setupBreathCalculator() {
+  const calculator = qs('[data-breath-calculator]');
+  if (!calculator) return;
+  const income = qs('#calc-income', calculator);
+  const essentials = qs('#calc-essentials', calculator);
+  const balance = qs('#calc-balance', calculator);
+  const days = qs('#calc-days', calculator);
+  const margin = qs('#calc-margin', calculator);
+  const circle = qs('#calc-circle', calculator);
+  const formatCurrency = value => value.toLocaleString('pt-BR', {
+    style: 'currency', currency: 'BRL', maximumFractionDigits: 0
+  });
+  const update = () => {
+    const incomeValue = Number(income.value);
+    const essentialsValue = Math.max(1, Number(essentials.value));
+    const balanceValue = Number(balance.value);
+    const calculatedDays = Math.max(0, Math.floor(balanceValue / (essentialsValue / 30)));
+    qs('[data-income-value]', calculator).textContent = formatCurrency(incomeValue);
+    qs('[data-essentials-value]', calculator).textContent = formatCurrency(essentialsValue);
+    qs('[data-balance-value]', calculator).textContent = formatCurrency(balanceValue);
+    days.textContent = String(calculatedDays);
+    margin.textContent = formatCurrency(Math.max(0, incomeValue - essentialsValue));
+    const degrees = Math.min(360, calculatedDays / 180 * 360);
+    circle.style.background = `conic-gradient(#2563eb ${degrees}deg, #e2e8f0 ${degrees}deg)`;
+  };
+  [income, essentials, balance].forEach(input => input.addEventListener('input', update));
+  update();
 }
 
 function setupWebMCP() {
@@ -168,5 +217,6 @@ document.addEventListener('DOMContentLoaded', () => {
   setupBudget();
   setupAccelerator();
   setupLogin();
+  setupBreathCalculator();
   setupWebMCP();
 });

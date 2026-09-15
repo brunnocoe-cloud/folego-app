@@ -1,6 +1,8 @@
 # Fôlego — Finanças Serenas
 
-Protótipo web estático e responsivo com seis telas conectadas, Tailwind CSS via CDN, imagens originais e interações em JavaScript.
+Protótipo web estático e responsivo com sete telas conectadas, Tailwind CSS via CDN, imagens originais e interações em JavaScript.
+
+A rota `cafe.html` oferece o Momento do Café, um ritual semanal em três atos para o casal revisar as finanças com serenidade. A landing `boas-vindas.html` inclui uma calculadora dinâmica de Dias de Fôlego.
 
 ## Executar localmente
 

@@ -21,7 +21,7 @@
   <header class="sticky top-0 z-30 border-b border-slate-200/80 bg-white/90 backdrop-blur">
     <div class="mx-auto flex max-w-7xl items-center justify-between px-5 py-4 md:px-8">
       <a href="boas-vindas.html" class="flex items-center gap-3 no-underline"><span class="brand-mark"><svg viewBox="0 0 32 32" width="25" height="25" fill="none"><path d="M4 17c5-9 10 8 24-5M5 23c7-6 13 6 22-2" stroke="currentColor" stroke-width="3" stroke-linecap="round"/></svg></span><span><strong class="block text-lg">Fôlego</strong><span class="text-xs text-slate-500">Finanças Serenas</span></span></a>
-      <nav class="hide-mobile flex items-center gap-7 text-sm font-bold text-slate-600"><a href="#filosofia">Filosofia</a><a href="#atos">3 Atos</a><a href="#comecar">Como começar</a></nav>
+      <nav class="hide-mobile flex items-center gap-7 text-sm font-bold text-slate-600"><a href="#filosofia">Filosofia</a><a href="#atos">3 Atos</a><a href="#calculadora">Calcule seu fôlego</a><a href="#comecar">Como começar</a></nav>
       <a href="login.html" class="btn-secondary !py-2.5">Entrar</a>
     </div>
   </header>
@@ -51,6 +51,33 @@
         <article class="card p-6"><div class="flex items-center justify-between"><span class="icon-box">↶</span><span class="pill pill-slate">Ato I</span></div><h3 class="serif mt-7 text-3xl font-bold text-[#12315e]">O Passado: Acolhimento</h3><p class="mt-4 leading-7 text-slate-600">Sem culpa ou julgamento. O que ficou para trás serviu de aprendizado e não precisa definir a família.</p></article>
         <article class="card border-blue-200 p-6 ring-4 ring-blue-50"><div class="flex items-center justify-between"><span class="icon-box">≈</span><span class="pill pill-blue">Ato II</span></div><h3 class="serif mt-7 text-3xl font-bold text-[#12315e]">O Presente: Respiro</h3><p class="mt-4 leading-7 text-slate-600">A métrica dos Dias de Fôlego revela a tranquilidade que sua casa já possui hoje.</p></article>
         <article class="card p-6"><div class="flex items-center justify-between"><span class="icon-box">✦</span><span class="pill pill-green">Ato III</span></div><h3 class="serif mt-7 text-3xl font-bold text-[#12315e]">O Futuro: Sonhos</h3><p class="mt-4 leading-7 text-slate-600">Jantar a dois, viagem de férias e reserva de paz ganham um caminho real e compartilhado.</p></article>
+      </div>
+    </section>
+
+    <section id="calculadora" class="mx-auto max-w-7xl px-5 pb-20 md:px-8" data-breath-calculator>
+      <div class="mb-9 text-center"><p class="eyebrow text-blue-600">Calculadora de Dias de Fôlego</p><h2 class="mt-2 text-3xl font-extrabold tracking-tight md:text-4xl">Descubra quanto tempo de tranquilidade sua casa já possui.</h2><p class="mx-auto mt-3 max-w-2xl text-slate-600">Ajuste os valores para transformar números soltos em uma medida simples de segurança familiar.</p></div>
+      <div class="grid gap-6 lg:grid-cols-[1.15fr_.85fr]">
+        <div class="card p-6 md:p-8">
+          <div class="grid gap-7">
+            <label class="block"><span class="flex items-center justify-between gap-4 text-sm font-bold"><span>Renda líquida familiar somada</span><output data-income-value class="text-blue-700">R$ 9.500</output></span><input id="calc-income" class="range mt-4" type="range" min="3000" max="30000" step="500" value="9500"><span class="mt-2 flex justify-between text-xs text-slate-400"><span>R$ 3 mil</span><span>R$ 30 mil</span></span></label>
+            <label class="block"><span class="flex items-center justify-between gap-4 text-sm font-bold"><span>Despesas essenciais fixas do mês</span><output data-essentials-value class="text-blue-700">R$ 5.800</output></span><input id="calc-essentials" class="range mt-4" type="range" min="1500" max="20000" step="100" value="5800"><span class="mt-2 flex justify-between text-xs text-slate-400"><span>R$ 1,5 mil</span><span>R$ 20 mil</span></span></label>
+            <label class="block"><span class="flex items-center justify-between gap-4 text-sm font-bold"><span>Saldo imediato em conta + reservas</span><output data-balance-value class="text-blue-700">R$ 17.500</output></span><input id="calc-balance" class="range mt-4" type="range" min="0" max="100000" step="500" value="17500"><span class="mt-2 flex justify-between text-xs text-slate-400"><span>R$ 0</span><span>R$ 100 mil</span></span></label>
+          </div>
+        </div>
+        <aside class="card flex flex-col items-center justify-center p-7 text-center md:p-8">
+          <div id="calc-circle" class="breath-circle" aria-live="polite"><span><strong id="calc-days" class="block text-5xl font-extrabold tracking-tight text-blue-600">90</strong><span class="mt-1 block text-sm font-bold text-slate-600">Dias de Fôlego</span></span></div>
+          <span class="pill pill-green mt-6">Mais de dois meses de serenidade</span>
+          <p class="mt-4 text-sm leading-6 text-slate-600">Sua margem mensal depois do essencial é de <strong id="calc-margin" class="text-slate-900">R$ 3.700</strong>.</p>
+          <a href="#comecar" class="btn-primary mt-6 w-full">Criar espaço familiar e transformar estresse em paz</a>
+        </aside>
+      </div>
+
+      <div class="mt-8 rounded-2xl border border-slate-200/60 bg-white p-6 shadow-serene md:p-8">
+        <div class="text-center"><p class="eyebrow text-blue-600">Um jeito diferente de olhar</p><h3 class="mt-2 text-2xl font-extrabold">A Psicologia do Fôlego vs. Finanças Punitivas</h3></div>
+        <div class="mt-7 grid gap-5 md:grid-cols-2">
+          <article class="rounded-2xl border border-emerald-200/70 bg-emerald-50/70 p-6"><span class="pill pill-green">Psicologia do Fôlego</span><ul class="mt-5 grid gap-3 text-sm leading-6 text-slate-700"><li>✓ Traduz o saldo em dias reais de tranquilidade.</li><li>✓ Acolhe o passado e concentra energia nas próximas escolhas.</li><li>✓ Aproxima o casal em torno de segurança e sonhos.</li></ul></article>
+          <article class="rounded-2xl border border-slate-200/70 bg-slate-50 p-6"><span class="pill pill-slate">Finanças Punitivas</span><ul class="mt-5 grid gap-3 text-sm leading-6 text-slate-600"><li>× Exibe números sem contexto emocional.</li><li>× Usa culpa, alertas agressivos e metas rígidas.</li><li>× Transforma a conversa da família em cobrança.</li></ul></article>
+        </div>
       </div>
     </section>
 
